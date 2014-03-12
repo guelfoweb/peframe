@@ -1,5 +1,22 @@
 #!/usr/bin/env python
 
+# ----------------------------------------------------------------------
+# This file is part of PEFrame.
+#
+# Knock is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Knock is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Knock. If not, see <http://www.gnu.org/licenses/>.
+# ----------------------------------------------------------------------
+
 import re
 import sys
 import string
@@ -43,10 +60,10 @@ def get_hash(filename):
 # Print PE file attributes
 def get_info(filename):
 	pe = pefile.PE(filename)
-	fn = os.path.basename(filename) 		# file name
-	fs = os.path.getsize(filename)			# file size (in byte)
-	ts = pe.FILE_HEADER.TimeDateStamp 		# timestamp
-	dl = pe.FILE_HEADER.IMAGE_FILE_DLL		# dll
+	fn = os.path.basename(filename) 	# file name
+	fs = os.path.getsize(filename)		# file size (in byte)
+	ts = pe.FILE_HEADER.TimeDateStamp 	# timestamp
+	dl = pe.FILE_HEADER.IMAGE_FILE_DLL	# dll
 	sc = pe.FILE_HEADER.NumberOfSections	# sections
 
 	#print "Optional Header:\t\t", hex(pe.OPTIONAL_HEADER.ImageBase)
