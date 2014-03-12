@@ -4,9 +4,9 @@
 #
 ## PEFrame: Portable Executable Framework
 ##
-## Gianni 'guelfoweb' Amato - guelfoweb@gmail.com - 2012
+## Gianni 'guelfoweb' Amato - guelfoweb@gmail.com
 ##
-## http://code.google.com/p/peframe/
+## https://github.com/guelfoweb/peframe
 ##
 ## Licence: GNU GPL v.2.0
 ##
@@ -19,8 +19,6 @@
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
-##
-## Credit to: Ero Carrera for 'pefile' module
 #
 ##############################################################
 
