@@ -1,7 +1,7 @@
-PEFrame
+PEframe
 =======
 
-PEFrame is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware.
+PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware.
 
 **Usage**
 
@@ -161,7 +161,7 @@ Translation         0x0809 0x04b0
 Credit
 ======
 
-PEFrame include <a href="https://code.google.com/p/pefile/">pefile</a> module written by Ero Carrera and <a href="http://code.google.com/p/pyew/source/browse/plugins/vmdetect.py">Anti Virtual Machine signature</a> written by Joxean Koret.
+PEframe include <a href="https://code.google.com/p/pefile/">pefile</a> module written by Ero Carrera and <a href="http://code.google.com/p/pyew/source/browse/plugins/vmdetect.py">Anti Virtual Machine signature</a> written by Joxean Koret.
 
 **Talk about...**
 
