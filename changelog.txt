@@ -1,0 +1,5 @@
+3.0 rc1 - 2014-03-13
+- Rewrite code and options
+
+1.x - 2.0
+- old version on Google Code -> http://code.google.com/p/peframe/
