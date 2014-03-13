@@ -82,45 +82,43 @@ Anti VM Trick discovered [2]
 Trick              Virtual Box
 Trick              VMware trick
 
-Suspicious API discovered [37]
+Suspicious API discovered [35]
 ------------------------------------------------------------
-Function           CopyFileW
-Function           CreateDirectoryW
-Function           CreateFileW
-Function           CreateProcessAsUserW
-Function           CreateProcessW
-Function           DeleteFileW
-Function           DeviceIoControl
-Function           EnumProcesses
-Function           ExitThread
-Function           FindFirstFileW
-Function           FindNextFileW
-Function           FindResourceW
-Function           FindWindowExW
-Function           FindWindowW
-Function           FtpGetFileSize
-Function           FtpOpenFileW
-Function           GetCommandLineW
-Function           GetComputerNameW
-Function           ReadProcessMemory
+Function           CreateDirectoryA
+Function           CreateFileA
+Function           CreateFileMappingA
+Function           CreateToolhelp32Snapshot
+Function           DeleteFileA
+Function           FindFirstFileA
+Function           FindNextFileA
+Function           GetCurrentProcess
+Function           GetFileAttributesA
+Function           GetFileSize
+Function           GetModuleHandleA
+Function           GetProcAddress
+Function           GetTempPathA
+Function           GetTickCount
+Function           GetUserNameA
+Function           GetVersionExA
+Function           InternetCrackUrlA
+Function           LoadLibraryA
+Function           MapViewOfFile
+Function           OpenProcess
+Function           Process32First
+Function           Process32Next
 Function           RegCloseKey
-Function           RegCreateKeyExW
-Function           RegDeleteKeyW
-Function           RegDeleteValueW
-Function           RegEnumKeyExW
-Function           RegOpenKeyExW
-Function           SetKeyboardState
-Function           ShellExecuteExW
-Function           ShellExecuteW
+Function           RegCreateKeyA
+Function           RegEnumKeyExA
+Function           RegOpenKeyA
+Function           RegOpenKeyExA
 Function           Sleep
-Function           TerminateProcess
-Function           UnhandledExceptionFilter
-Function           VirtualAlloc
-Function           VirtualAllocEx
-Function           VirtualFree
-Function           VirtualFreeEx
+Function           WSAStartup
 Function           WriteFile
-Function           WriteProcessMemory
+Function           closesocket
+Function           connect
+Function           recv
+Function           send
+Function           socket
 
 Suspicious Sections discovered [2]
 ------------------------------------------------------------
