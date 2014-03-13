@@ -214,14 +214,14 @@ def get_fileurl(filename):
 			array.append(word)
 			
 	for elem in sorted(set(array)):
-		match = re.search("^http|^ftp|^sftp|^ssh|^www|.com$|.org$|.it$|.co.uk$|.ru$|.jp$|.net$|.ly$|.gl$|^([0-9]{1,3})(?:\.[0-9]{1,3}){3}$", elem, re.IGNORECASE)
+		match = re.search("^http:|^ftp:|^sftp:|^ssh:|^www|.com$|.org$|.it$|.co.uk$|.ru$|.jp$|.net$|.ly$|.gl$|^([0-9]{1,3})(?:\.[0-9]{1,3}){3}$", elem, re.IGNORECASE)
 		if match and len(elem) > 6: # len(c.it) = 4 <- flase positive
 			arrayURL.append(elem)
 		else:
 			arrayFILE.append(elem)
 
 	for elem in sorted(set(arrayFILE)):
-		match = re.search(".dat$|.bin$|.zip$|.tmp$|.ocx$|.pdf$|.mp3$|.jpg$|.rar$|.exe$|.wmv$|.doc$|.avi$|.ppt$|.mpg$|.tif$|.wav$|.mov$|.psd$|.wmaxls$|.mp4$|.txt$|.bmp$|.pps|pub$|.dwg$|.gif|mpeg|swf$|.asf$|.png$|.dat$|jar$|.iso$|.flv7z$|.gz$|.rtf$|msi$|.jpeg$|.3gp$|html$|.pst$|.cab$|.bin$|.tgz$|.tar$|.log$|.dll$|eml$|.ram$|.lnk$|.bat$|.asx$|.sql$|.asp$|.aspx$|.php$|.bak$|.old$|.olb$|.oca$|.reg$", elem, re.IGNORECASE)
+		match = re.search(".db$|.dat$|.bin$|.zip$|.tmp$|.ocx$|.pdf$|.ftp$|.mp3$|.jpg$|.rar$|.exe$|.wmv$|.doc$|.avi$|.ppt$|.mpg$|.tif$|.wav$|.mov$|.psd$|.wmaxls$|.mp4$|.txt$|.bmp$|.pps|pub$|.dwg$|.gif|mpeg|swf$|.asf$|.png$|.dat$|jar$|.iso$|.flv7z$|.gz$|.rtf$|msi$|.jpeg$|.3gp$|html$|.pst$|.cab$|.bin$|.tgz$|.tar$|.log$|.dll$|eml$|.ram$|.lnk$|.bat$|.asx$|.sql$|.asp$|.aspx$|.php$|.bak$|.old$|.olb$|.oca$|.reg$", elem, re.IGNORECASE)
 		if match:
 			arrayFileNames.append(elem)
 
