@@ -131,18 +131,51 @@ Section            .rdata
 Hash MD5           41795b402636cb13e2dbbbec031dbb1a
 Hash SHA-1         b674141b34f843d54865a399edfca44c3757df59
 
-File name discovered [10]
+File name discovered [43]
 ------------------------------------------------------------
-File name          FTPVoyager.ftp
+File name          Connections.txt
+File name          ESTdb2.dat
 File name          FTPList.db
-File name          FTPVoyager.qc
-File name          FtpSite.xml
-File name          ftpsite.ini
-File name          MPR.dll
+File name          FTPVoyager.ftp
+File name          Favorites.dat
+File name          History.dat
+File name          NovaFTP.db
+File name          QData.dat
+File name          \History.dat
+File name          \Quick.dat
+File name          \Sites.dat
+File name          \sm.dat
+File name          addrbk.dat
+File name          advapi32.dll
+File name          bookmark.dat
+File name          crypt32.dll
+File name          explorer.exe
+File name          fireFTPsites.dat
 File name          ftplist.txt
-File name          ftplast.osd
-File name          ftpshell.fsi
-File name          uxtheme.dll
+File name          kernel32.dll
+File name          mozsqlite3.dll
+File name          msi.dll
+File name          netapi32.dll
+File name          nss3.dll
+File name          ole32.dll
+File name          pstorec.dll
+File name          quick.dat
+File name          shell32.dll
+File name          shlwapi.dll
+File name          signons.txt
+File name          signons2.txt
+File name          signons3.txt
+File name          site.dat
+File name          sites.dat
+File name          sites.db
+File name          sqlite3.dll
+File name          unleap.exe
+File name          user32.dll
+File name          userenv.dll
+File name          wand.dat
+File name          wininet.dll
+File name          wiseftpsrvs.bin
+File name          wsock32.dll
 
 Url discovered [2]
 ------------------------------------------------------------
