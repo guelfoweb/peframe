@@ -33,7 +33,7 @@ Install
 
 <code>Python 2.6.5 -> 2.7.x</code>
 
-**Download (v.3.0 rc1)**
+**Download**
 
 <code>$ git clone https://github.com/guelfoweb/peframe.git</code>
 
