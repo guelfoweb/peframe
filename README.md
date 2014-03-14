@@ -131,49 +131,49 @@ Hash SHA-1         b674141b34f843d54865a399edfca44c3757df59
 
 File name discovered [43]
 ------------------------------------------------------------
-File name          Connections.txt
-File name          ESTdb2.dat
-File name          FTPList.db
-File name          FTPVoyager.ftp
-File name          Favorites.dat
-File name          History.dat
-File name          NovaFTP.db
-File name          QData.dat
-File name          \History.dat
-File name          \Quick.dat
-File name          \Sites.dat
-File name          \sm.dat
-File name          addrbk.dat
-File name          advapi32.dll
-File name          bookmark.dat
-File name          crypt32.dll
-File name          explorer.exe
-File name          fireFTPsites.dat
-File name          ftplist.txt
-File name          kernel32.dll
-File name          mozsqlite3.dll
-File name          msi.dll
-File name          netapi32.dll
-File name          nss3.dll
-File name          ole32.dll
-File name          pstorec.dll
-File name          quick.dat
-File name          shell32.dll
-File name          shlwapi.dll
-File name          signons.txt
-File name          signons2.txt
-File name          signons3.txt
-File name          site.dat
-File name          sites.dat
-File name          sites.db
-File name          sqlite3.dll
-File name          unleap.exe
-File name          user32.dll
-File name          userenv.dll
-File name          wand.dat
-File name          wininet.dll
-File name          wiseftpsrvs.bin
-File name          wsock32.dll
+Text               Connections.txt
+Data               ESTdb2.dat
+Database           FTPList.db
+FTP Config         FTPVoyager.ftp
+Data               Favorites.dat
+Data               History.dat
+Database           NovaFTP.db
+Data               QData.dat
+Data               \History.dat
+Data               \Quick.dat
+Data               \Sites.dat
+Data               \sm.dat
+Data               addrbk.dat
+Library            advapi32.dll
+Data               bookmark.dat
+Library            crypt32.dll
+Library            explorer.exe
+Data               fireFTPsites.dat
+Text               ftplist.txt
+Library            kernel32.dll
+Library            mozsqlite3.dll
+Library            msi.dll
+Library            netapi32.dll
+Library            nss3.dll
+Library            ole32.dll
+Library            pstorec.dll
+Data               quick.dat
+Library            shell32.dll
+Library            shlwapi.dll
+Text               signons.txt
+Text               signons2.txt
+Text               signons3.txt
+Data               site.dat
+Data               sites.dat
+Database           sites.db
+Library            sqlite3.dll
+Executable         unleap.exe
+Library            user32.dll
+Library            userenv.dll
+Library            wand.dat
+Library            wininet.dll
+Binary             wiseftpsrvs.bin
+Library            wsock32.dll
 
 Url discovered [2]
 ------------------------------------------------------------
