@@ -205,7 +205,7 @@ def get_fileurl(filename):
 	array          = [] # word raw
 	arrayURL       = [] # url
 	arrayFILE      = [] # file raw
-	arrayFileNames = [] # file
+	arrayFileNames = [] # description and file name
 
 	for found_str in get_process(PEtoStr):
 		fname = re.findall("(.+\.([a-z]{2,3}$))+", found_str, re.IGNORECASE | re.MULTILINE)
@@ -221,11 +221,78 @@ def get_fileurl(filename):
 			arrayFILE.append(elem)
 
 	for elem in sorted(set(arrayFILE)):
-		match = re.search(".db$|.dat$|.bin$|.zip$|.tmp$|.ocx$|.pdf$|.ftp$|.mp3$|.jpg$|.rar$|.exe$|.wmv$|.doc$|.avi$|.ppt$|.mpg$|.tif$|.wav$|.mov$|.psd$|.wmaxls$|.mp4$|.txt$|.bmp$|.pps|pub$|.dwg$|.gif|mpeg|swf$|.asf$|.png$|.dat$|jar$|.iso$|.flv7z$|.gz$|.rtf$|msi$|.jpeg$|.3gp$|html$|.pst$|.cab$|.bin$|.tgz$|.tar$|.log$|.dll$|eml$|.ram$|.lnk$|.bat$|.asx$|.sql$|.asp$|.aspx$|.php$|.bak$|.old$|.olb$|.oca$|.reg$", elem, re.IGNORECASE)
-		if match:
-			arrayFileNames.append(elem)
+		file_type = {
+			"Video":".3gp",
+			"Compressed":".7z",
+			"Video":".asf",
+			"Web Page":".asp",
+			"Web Page":".aspx",
+			"Video":".asx",
+			"Video":".avi",
+			"Backup":".bak",
+			"Binary":".bin",
+			"Image":".bmp",
+			"Cabinet":".cab",
+			"Data":".dat",
+			"Database":".db",
+			"Word":".doc",
+			"Word":".docx",
+			"Library":".dll",
+			"Autocad":".dwg",
+			"Executable":".exe",
+			"Email":".eml",
+			"Video":".flv",
+			"FTP Config":".ftp",
+			"Image":".gif",
+			"Compressed":".gz",
+			"Web Page":".htm",
+			"Web Page":".html",
+			"Disc Image":".iso",
+			"Log":".log",
+			"Archive Java":".jar",
+			"Image":".jpg",
+			"Image":".jepg",
+			"Audio":".mp3",
+			"Video":".mp4",
+			"Video":".mpg",
+			"Video":".mpeg",
+			"Video":".mov",
+			"Installer":".msi",
+			"Object":".oca",
+			"Object":".ocx",
+			"Autogen":".olb",
+			"Backup":".old",
+			"Registry":".reg",
+			"Portable":".pdf",
+			"Web Page":".php",
+			"Image":".png",
+			"Slideshow":".pps",
+			"Presentation":".ppt",
+			"Image":".psd",
+			"Email":".pst",
+			"Document":".pub",
+			"Compressed":".rar",
+			"Text":".rtf",
+			"Query DB":".sql",
+			"Adobe Flash":".swf",
+			"Image":".tif",
+			"Temporary":".tmp",
+			"Text":".txt",
+			"Compressed":".tgz",
+			"Audio":".wav",
+			"Audio":".wma",
+			"Video":".wmv",
+			"Excel":".xls",
+			"Excel":".xlsx",
+			"Compressed":".zip"
+		}
 
-	return arrayURL, arrayFileNames							
+		for descr in file_type:
+			match = re.search(file_type[descr]+"$", elem, re.IGNORECASE)
+			if match:
+				arrayFileNames.append([descr, elem])
+
+	return arrayURL, arrayFileNames
 	PEtoStr.close()
 
 # Directory
@@ -432,5 +499,4 @@ def get_suspicious():
 def get_dump(filename):
 	pe = pefile.PE(filename)
 	return pe.dump_info()
-
 
