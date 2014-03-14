@@ -28,7 +28,7 @@ except ImportError:
 
 # INFORMATION
 NAME		= "PEframe"
-VERSION		= "3.0 rc1"
+VERSION		= "3.0 rc2"
 AUTHOR		= "Author: Gianni 'guelfoweb' Amato"
 GITHUB		= "Github: https://github.com/guelfoweb/peframe"
 INFO		= NAME+" v."+VERSION+" - Open Source Project\n"+AUTHOR+"\n"+GITHUB
@@ -135,7 +135,7 @@ def show_fileurl(filename):
 			print "\nFile name discovered [" + str(len_file) + "]"
 			print "-"*60
 			for i in range(0, len_file):
-				print 'File name'.ljust(18), getfileurl[1][i]
+				print getfileurl[1][i][0].ljust(18), getfileurl[1][i][1]
 		if len_url > 0:
 			print "\nUrl discovered [" + str(len_url) + "]"
 			print "-"*60
@@ -398,5 +398,4 @@ if len(sys.argv) == 3:
 		show_dump(filename); sys.exit(0)
 	else:
 		help()
-
 
