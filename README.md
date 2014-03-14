@@ -147,7 +147,7 @@ Data               addrbk.dat
 Library            advapi32.dll
 Data               bookmark.dat
 Library            crypt32.dll
-Library            explorer.exe
+Executable         explorer.exe
 Data               fireFTPsites.dat
 Text               ftplist.txt
 Library            kernel32.dll
