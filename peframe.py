@@ -28,7 +28,7 @@ except ImportError:
 
 # INFORMATION
 NAME		= "PEframe"
-VERSION		= "3.0 rc2"
+VERSION		= "3.0 rc3"
 AUTHOR		= "Author: Gianni 'guelfoweb' Amato"
 GITHUB		= "Github: https://github.com/guelfoweb/peframe"
 INFO		= NAME+" v."+VERSION+" - Open Source Project\n"+AUTHOR+"\n"+GITHUB
