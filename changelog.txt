@@ -1,5 +1,5 @@
 3.0 rc3 - 2014-05-14
-- Calculate the "import hash" of embedded/dropped executables
+- Calculate the "import hash" of embedded/dropped executables -> https://www.mandiant.com/blog/tracking-malware-import-hashing/
 
 3.0 rc2 - 2014-03-14
 - Assigns file type to the names of the files found
