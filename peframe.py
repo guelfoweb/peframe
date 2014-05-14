@@ -37,8 +37,10 @@ def show_hash(filename):
 	hashcode = pecore.get_hash(filename)
 	md5      = hashcode[0]
 	sha1     = hashcode[1]
+	imph     = hashcode[2]
 	print "Hash MD5".ljust(18), md5
 	print "Hash SAH1".ljust(18), sha1
+	print "Imphash".ljust(18), imph
 
 def show_info(filename):
 	info = pecore.get_info(filename)

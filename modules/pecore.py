@@ -32,7 +32,8 @@ try:
 	import pefile
 	import peutils
 except ImportError:
-	print 'import pefile module failed.'
+	print '[!] import pefile module failed.'
+	sys.exit(0)
 
 def is_pe(filename):
 	try:
@@ -43,6 +44,9 @@ def is_pe(filename):
 
 # Print HASH MD5 & SHA1
 def get_hash(filename):
+	pe = pefile.PE(filename)
+	ih = pe.get_imphash()
+
 	# Thank to Christophe Monniez for patched hash function
 	fh = open(filename, 'rb')
 	m = hashlib.md5()
@@ -55,15 +59,15 @@ def get_hash(filename):
 		s.update(data)
 	md5  = m.hexdigest()
 	sha1 = s.hexdigest()
-	return md5, sha1
+	return md5, sha1, ih
 
 # Print PE file attributes
 def get_info(filename):
 	pe = pefile.PE(filename)
-	fn = os.path.basename(filename) 	# file name
-	fs = os.path.getsize(filename)		# file size (in byte)
-	ts = pe.FILE_HEADER.TimeDateStamp 	# timestamp
-	dl = pe.FILE_HEADER.IMAGE_FILE_DLL	# dll
+	fn = os.path.basename(filename) 		# file name
+	fs = os.path.getsize(filename)			# file size (in byte)
+	ts = pe.FILE_HEADER.TimeDateStamp 		# timestamp
+	dl = pe.FILE_HEADER.IMAGE_FILE_DLL		# dll
 	sc = pe.FILE_HEADER.NumberOfSections	# sections
 
 	#print "Optional Header:\t\t", hex(pe.OPTIONAL_HEADER.ImageBase)
