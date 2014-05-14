@@ -54,6 +54,7 @@ DLL                No
 Sections           4
 Hash MD5           cae18bdb8e9ef082816615e033d2d85b
 Hash SAH1          546060ad10a766e0ecce1feb613766a340e875c0
+Imphash            353cf96592db561b5ab4e408464ac6ae
 Packer             Yes
 Anti Debug         Yes
 Anti VM            Yes
