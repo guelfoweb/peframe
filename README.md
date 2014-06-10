@@ -1,7 +1,8 @@
 PEframe
 =======
 
-PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware.
+PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware. It's released under GPL v2.
+JSON output and SQlite database support are been introduced since version 4.0.
 
 **Usage**
 
@@ -12,6 +13,10 @@ PEframe is a open source tool to perform static analysis on <a href="http://en.w
 **Options**
 
 <pre>
+	--skip-db		Skip database
+	--json			Output in json
+	--json-skip-db	Output in json and skip database
+	
      --import       Imported function and dll
      --export       Exported function and dll
 

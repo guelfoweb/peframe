@@ -1,3 +1,8 @@
+4.0 - 2014-06-10
+- Added SQlite database to store report by auto analysis
+- Added Json output only for auto analysis
+- Bug fixed in --export option -> https://github.com/guelfoweb/peframe/issues/2
+
 3.0 rc3 - 2014-05-14
 - Calculate the "import hash" of embedded/dropped executables -> https://www.mandiant.com/blog/tracking-malware-import-hashing/
 
