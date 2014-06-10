@@ -5,7 +5,7 @@
 #
 # PEframe is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
+# the Free Software Foundation, either version 2 of the License, or
 # (at your option) any later version.
 #
 # PEframe is distributed in the hope that it will be useful,
@@ -161,10 +161,9 @@ def get_sections(filename):
 	else:
 		return False
 
-# Load PEID userdb.txt database and scan file
-pathname = os.path.abspath('modules' + os.sep + 'userdb.txt') #	return pathname
+# Check peid
 def check_peid(filename):
-    signatures = peutils.SignatureDatabase(pathname)
+    signatures = peutils.SignatureDatabase(fn_userdb)
     pe         = pefile.PE(filename)
     matches    = signatures.match_all(pe,ep_only = True)
     return matches
@@ -219,8 +218,8 @@ def get_fileurl(filename):
 			
 	for elem in sorted(set(array)):
 		match = re.search("^http:|^ftp:|^sftp:|^ssh:|^www|.com$|.org$|.it$|.co.uk$|.ru$|.jp$|.net$|.ly$|.gl$|^([0-9]{1,3})(?:\.[0-9]{1,3}){3}$", elem, re.IGNORECASE)
-		if match and len(elem) > 6: # len(c.it) = 4 <- flase positive
-			arrayURL.append(elem)
+		if match and len(elem) > 6: # len(c.it) = 4 <- false positive
+			arrayURL.append(["Url", elem])
 		else:
 			arrayFILE.append(elem)
 
@@ -407,12 +406,11 @@ def get_exported_functions(filename):
 	array = []
 	try:
 		for exp in pe.DIRECTORY_ENTRY_EXPORT.symbols:
-#			print hex(pe.OPTIONAL_HEADER.ImageBase + exp.address), exp.name, exp.ordinal
-			dll = exp.dll
-			for imp in exp.expports:
-				address = hex(pe.OPTIONAL_HEADER.ImageBase + exp.address)
-				function = exp.name
-				array.append([dll, address, function])		
+			dll = "" #exp.dll
+			address = hex(pe.OPTIONAL_HEADER.ImageBase + exp.address)
+			function = exp.name
+			array.append([dll, address, function])    
+	
 		return array
 	except:
 		return False
@@ -434,12 +432,16 @@ def load_api_list(filename):
 	return wlist
 
 # Load array by file alerts.txt - Suspicious Functions API and Sections
-filename = os.path.abspath('modules' + os.sep + 'alerts.txt') #	return pathname
-alerts   = load_api_list(filename)
+fn_apialert	= os.path.abspath('signatures' + os.sep + 'alerts.txt') #	return pathname
+alerts 		= load_api_list(fn_apialert)
 
 # Load array by file antidbg.txt - Suspicious Functions Anti Debug
-filename = os.path.abspath('modules' + os.sep + 'antidbg.txt') # return pathname
-antidbgs = load_api_list(filename)
+fn_antidbg	= os.path.abspath('signatures' + os.sep + 'antidbg.txt') # return pathname
+antidbgs	= load_api_list(fn_antidbg)
+
+# Load PEID userdb.txt database and scan file
+fn_userdb	= os.path.abspath('signatures' + os.sep + 'userdb.txt') #	return pathname
+
 
 # Suspicious Functions Anti Debug
 def get_apiantidbg(filename):
@@ -480,7 +482,6 @@ def get_sectionsalert(filename):
 	pe    = pefile.PE(filename)
 	array = []
 	for section in pe.sections:
-		section.get_entropy()
 		if section.SizeOfRawData == 0 or (section.get_entropy() > 0 and section.get_entropy() < 1) or section.get_entropy() > 7:
 			sc   = section.Name
 			md5  = section.get_hash_md5()
