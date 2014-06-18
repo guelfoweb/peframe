@@ -104,7 +104,7 @@ def dbmanage(name,size,time,dll,sect,md5, \
 						con.commit()
 					# url
 					for i in range(0,len(au_show_furl[1])):
-						cur.execute('''INSERT INTO show_url (id, url) VALUES (?, ?)''', (idrif, au_show_furl[1][i]))
+						cur.execute('''INSERT INTO show_url (id, url) VALUES (?, ?)''', (idrif, au_show_furl[1][i][1]))
 						con.commit()
 			if len(au_show_furl) == 1:
 				# file
