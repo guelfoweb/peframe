@@ -12,7 +12,7 @@ PEframe is a open source tool to perform static analysis on <a href="http://en.w
 **Options**
 
 <pre>
-	--json			Output in json
+     --json         Output in json
 	
      --import       Imported function and dll
      --export       Exported function and dll
