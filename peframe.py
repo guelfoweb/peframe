@@ -34,7 +34,8 @@ def is_pe(filename):
 		pe = pefile.PE(filename)
 		return True
 	except:
-		return False
+		print "Error: invalid file"
+		exit(0)
 
 def autoanalysis(pe, filename, json=False):
 	
