@@ -1,7 +1,7 @@
 PEframe
 =======
 
-PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware.
+PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">Portable Executable</a> malware.
 
 **Usage**
 
