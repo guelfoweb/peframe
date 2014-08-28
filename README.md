@@ -1,8 +1,7 @@
 PEframe
 =======
 
-PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware. It's released under GPL v2.
-JSON output and SQlite database support are been introduced since version 4.0.
+PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">(Portable Executable)</a> malware.
 
 **Usage**
 
@@ -13,9 +12,7 @@ JSON output and SQlite database support are been introduced since version 4.0.
 **Options**
 
 <pre>
-	--skip-db		Skip database
 	--json			Output in json
-	--json-skip-db	Output in json and skip database
 	
      --import       Imported function and dll
      --export       Exported function and dll
@@ -25,7 +22,6 @@ JSON output and SQlite database support are been introduced since version 4.0.
      --dir-resource Resource directory
      --dir-debug    Debug directory
      --dir-tls      TLS directory
-     --dir-reloc    Relocation directory
 
      --strings      Get all strings
      --sections     Sections information
@@ -47,7 +43,7 @@ or <b><a href="https://github.com/guelfoweb/peframe/archive/master.zip" alt="pef
 Example
 =======
 
-<code>$ python peframe.py malware.exe</code>
+<code>$ ./peframe.py malware.exe</code>
 
 <pre>
 Short information
@@ -55,21 +51,27 @@ Short information
 File Name          malware.exe
 File Size          935281 byte
 Compile Time       2012-01-29 22:32:28
-DLL                No
+DLL                False
 Sections           4
 Hash MD5           cae18bdb8e9ef082816615e033d2d85b
 Hash SAH1          546060ad10a766e0ecce1feb613766a340e875c0
 Imphash            353cf96592db561b5ab4e408464ac6ae
-Packer             Yes
-Anti Debug         Yes
-Anti VM            Yes
-Directory          Import, Resource
+Detected           Sign, Packer, Anti Debug, Anti VM
+Directory          Import, Resource, Debug, Relocation, Security
 
-Packer matched [3]
+Digital Signature
 ------------------------------------------------------------
-Packer             Microsoft Visual C++ 8
-Packer             VC8 -> Microsoft Corporation
-Packer             Microsoft Visual C++ 8
+Virtual Address    12A200
+Block Size         4813 byte
+Hash MD5           63b8c4daec26c6c074ca5977f067c21e
+Hash SHA-1         53731a283d0c251f7c06f6d7d423124689873c62
+
+Packer matched [4]
+------------------------------------------------------------
+Packer             Microsoft Visual C++ v6.0
+Packer             Microsoft Visual C++ 5.0
+Packer             Microsoft Visual C++
+Packer             Installer VISE Custom
 
 Anti Debug discovered [9]
 ------------------------------------------------------------
@@ -137,25 +139,28 @@ Hash SHA-1         b674141b34f843d54865a399edfca44c3757df59
 
 File name discovered [43]
 ------------------------------------------------------------
-Text               Connections.txt
+Binary             wiseftpsrvs.bin
 Data               ESTdb2.dat
-Database           FTPList.db
-FTP Config         FTPVoyager.ftp
 Data               Favorites.dat
 Data               History.dat
-Database           NovaFTP.db
 Data               QData.dat
 Data               \History.dat
 Data               \Quick.dat
 Data               \Sites.dat
 Data               \sm.dat
 Data               addrbk.dat
-Library            advapi32.dll
 Data               bookmark.dat
-Library            crypt32.dll
-Executable         explorer.exe
 Data               fireFTPsites.dat
-Text               ftplist.txt
+Data               quick.dat
+Data               site.dat
+Data               sites.dat
+Database           FTPList.db
+Database           sites.db
+Database           NovaFTP.db
+Executable         unleap.exe
+Executable         explorer.exe
+FTP Config         FTPVoyager.ftp
+Library            crypt32.dll
 Library            kernel32.dll
 Library            mozsqlite3.dll
 Library            msi.dll
@@ -163,23 +168,20 @@ Library            netapi32.dll
 Library            nss3.dll
 Library            ole32.dll
 Library            pstorec.dll
-Data               quick.dat
 Library            shell32.dll
 Library            shlwapi.dll
-Text               signons.txt
-Text               signons2.txt
-Text               signons3.txt
-Data               site.dat
-Data               sites.dat
-Database           sites.db
+Library            advapi32.dll
 Library            sqlite3.dll
-Executable         unleap.exe
 Library            user32.dll
 Library            userenv.dll
 Library            wand.dat
 Library            wininet.dll
-Binary             wiseftpsrvs.bin
 Library            wsock32.dll
+Text               Connections.txt
+Text               ftplist.txt
+Text               signons.txt
+Text               signons2.txt
+Text               signons3.txt
 
 Url discovered [2]
 ------------------------------------------------------------

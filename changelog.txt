@@ -1,3 +1,9 @@
+4.1 - 2014-08-28
+- Added check for Digital Signature
+- Removed database SQlite
+- Fixed output JSON
+- Rewrited code structure
+
 4.0 - 2014-06-10
 - Added SQlite database to store report by auto analysis
 - Added Json output only for auto analysis
