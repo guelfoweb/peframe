@@ -208,6 +208,7 @@ PEframe include <a href="https://code.google.com/p/pefile/">pefile</a> module wr
 <li><a href="http://digital-forensics.sans.org/blog/2014/03/04/tools-for-analyzing-static-properties-of-suspicious-files-on-windows">Tools for Analyzing Static Properties of Suspicious Files on Windows</a> <i>(SANS Digital Forensics and Incident Response, Lenny Zeltser).</i></li>
 <li><a href="http://www.cyberdefensemagazine.com/newsletters/august-2013/index.html#p=26">Automated Static and Dynamic Analysis of Malware</a> <i>(Cyber Defence Magazine, Andrew Browne, Director Malware Lab Lavasoft).</i></li>
 <li><a href="https://eforensicsmag.com/malware-analysis-2/">Suspicious File Analysis with PEframe</a> <i>(eForensics Magazine, Chintan Gurjar)</i></li>
+<li><a href="http://cert.ssi.gouv.fr/site/CERTFR-2014-ACT-030/index.html">Bulletin CERTFR-2014-ACT-030</a> <i>(PEframe was mentioned in the security bulletin by CERT FR)</i></li>
 </ul>
 
 Other
