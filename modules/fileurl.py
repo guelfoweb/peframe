@@ -129,6 +129,8 @@ def get(filename):
 			if match:
 				arrayFileNames.append([descr, elem])
 
+	filelist = []
+	
 	if arrayFileNames:
 		"""
 		arrayFileNames ->
