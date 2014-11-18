@@ -1,10 +1,20 @@
-CheckRemoteDebuggerPresent
+CheckRemoteDebugger
+DebugActiveProcess
 FindWindow
+GetLastError
 GetWindowThreadProcessId
+IsDebugged
 IsDebuggerPresent
+NtCreateThreadEx
+NtGlobalFlags
+NtQueryInformationProcess (Questa funzione si trova all'interno del file Ntdll.dll e non è una funzione esportata.)
+NtSetInformationThread
 OutputDebugString
+pbIsPresent
 Process32First
 Process32Next
 TerminateProcess
+ThreadHideFromDebugger
 UnhandledExceptionFilter
 ZwQueryInformation
+
