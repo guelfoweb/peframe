@@ -38,13 +38,13 @@ def is_pe(filename):
 		exit(0)
 
 def autoanalysis(pe, filename, json=False):
-	
 	if json:
 		print pecore.get_info(pe, filename), \
 			pecore.get_cert(pe), \
 			pecore.get_packer(pe), \
 			pecore.get_antidbg(pe), \
 			pecore.get_antivm(filename), \
+			pecore.get_xor(filename), \
 			pecore.get_apialert(pe), \
 			pecore.get_secalert(pe), \
 			pecore.get_fileurl(filename), \
@@ -57,6 +57,7 @@ def autoanalysis(pe, filename, json=False):
 			pecore.get_packer(pe), \
 			pecore.get_antidbg(pe), \
 			pecore.get_antivm(filename), \
+			pecore.get_xor(filename), \
 			pecore.get_apialert(pe), \
 			pecore.get_secalert(pe), \
 			pecore.get_fileurl(filename), \
@@ -117,4 +118,3 @@ if len(sys.argv) == 3:
 		print pecore.get_dump(pe); sys.exit(0)
 	else:
 		help.help()
-
