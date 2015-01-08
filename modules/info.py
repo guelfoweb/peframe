@@ -26,6 +26,7 @@ import directories
 import peid
 import apiantidbg
 import antivm
+import xor
 
 import pefile
 import peutils
@@ -65,7 +66,7 @@ def get(pe, filename):
 	tsdate = datetime.datetime.fromtimestamp(tstamp) # timestamp in date
 
 	md5  	= get_hash(pe, filename)[0] # hash md5 -> (pe, filename)
-	sha1 	= get_hash(pe, filename)[1]	# hash sha1 -> (pe, filename)
+	sha1 	= get_hash(pe, filename)[1] # hash sha1 -> (pe, filename)
 	imphash = get_hash(pe, filename)[2] # import hash -> (pe, filename)
 
 	# directory -> (pe)
@@ -85,7 +86,11 @@ def get(pe, filename):
 	if antidbg:
 		detected.append("Anti Debug")
 
-	antivirtualmachine = antivm.get(filename)	# anti virtual machine
+	xorcheck = xor.get(filename) 	# Xor
+	if xorcheck[0]:
+		detected.append("Xor")
+
+	antivirtualmachine = antivm.get(filename) # anti virtual machine
 	if antivirtualmachine:
 		detected.append("Anti VM")
 	
@@ -97,6 +102,7 @@ def get(pe, filename):
 					"Hash MD5": md5, \
 					"Hash SHA-1": sha1, \
 					"Import Hash": imphash, \
+					"Xor": xorcheck[0], \
 					"Detected": detected, \
 					"Directories": dirlist
 					}, indent=4, separators=(',', ': '))
