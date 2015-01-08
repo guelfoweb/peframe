@@ -56,7 +56,7 @@ def show_export(pe):
 def show_directory(pe, d):
 	print pecore.get_dir(pe, d)
 
-def show_auto(info,cert_dump,peid,antidbg,antivm,apialert,sectionsalert,fileurl,meta):
+def show_auto(info,cert_dump,peid,antidbg,antivm,xor,apialert,sectionsalert,fileurl,meta):
 
 	#INFO
 	info_load = json.loads(info)
@@ -69,6 +69,7 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,apialert,sectionsalert,fileurl,
 	hashmd5 = short_info["Hash MD5"]
 	hashsha1 =  short_info["Hash SHA-1"]
 	hashimport = short_info["Import Hash"]
+	xorcheck = short_info["Xor"]
 	detected = short_info["Detected"]
 	directory = short_info["Directories"] # contains a list -> ', '.join(directory)
 
@@ -81,7 +82,8 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,apialert,sectionsalert,fileurl,
 	print "Sections".ljust(18), str(sections)
 	print "Hash MD5".ljust(18), str(hashmd5)
 	print "Hash SHA-1".ljust(18), str(hashsha1)
-	print "Imphash".ljust(18), str(hashimport)
+	if hashimport:
+		print "Imphash".ljust(18), str(hashimport)
 	print "Detected".ljust(18), ', '.join(detected)
 	print "Directory".ljust(18), ', '.join(directory)
 
@@ -131,6 +133,16 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,apialert,sectionsalert,fileurl,
 			print "-"*60
 			for i in range(0, len(antivm_matched)):
 				print "Trick".ljust(18), antivm_matched[i]
+
+	# XOR
+	if xorcheck:
+		print "\nXOR discovered"
+		print "-"*60
+		print "Key length".ljust(18), "Offset (hex)".ljust(18),"Offset (dec)".ljust(18)
+		xor_load = json.loads(xor)
+		xor = xor_load["Offset"]
+		for i in xrange(0, len(xor)):
+			print str(xor[i][0]).ljust(18), hex(xor[i][1]).ljust(18), xor[i][1]
 
 	# FUNCTION API ALERT
 	if apialert:
@@ -198,6 +210,6 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,apialert,sectionsalert,fileurl,
 		if meta_matched:
 			print "\nMeta data found ["+str(len(meta_matched))+"]"
 			print "-"*60
-			for i in range(0, len(meta_matched)):
-				print meta_matched[i]
-
+			for i in xrange(0, len(meta_matched)):
+				meta_array = meta_matched[i].split(":")
+				print meta_array[0].ljust(18), meta_array[1]
