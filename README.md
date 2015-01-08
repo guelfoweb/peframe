@@ -56,8 +56,16 @@ Sections           4
 Hash MD5           cae18bdb8e9ef082816615e033d2d85b
 Hash SAH1          546060ad10a766e0ecce1feb613766a340e875c0
 Imphash            353cf96592db561b5ab4e408464ac6ae
-Detected           Sign, Packer, Anti Debug, Anti VM
+Detected           Xor, Sign, Packer, Anti Debug, Anti VM
 Directory          Import, Resource, Debug, Relocation, Security
+
+XOR discovered
+------------------------------------------------------------
+Key length         Offset (hex)       Offset (dec)      
+1                  0x5df4e            384846
+2                  0x5df4e            384846
+4                  0x5df4e            384846
+8                  0x5df4e            384846
 
 Digital Signature
 ------------------------------------------------------------
@@ -143,12 +151,6 @@ Binary             wiseftpsrvs.bin
 Data               ESTdb2.dat
 Data               Favorites.dat
 Data               History.dat
-Data               QData.dat
-Data               \History.dat
-Data               \Quick.dat
-Data               \Sites.dat
-Data               \sm.dat
-Data               addrbk.dat
 Data               bookmark.dat
 Data               fireFTPsites.dat
 Data               quick.dat
@@ -163,16 +165,6 @@ FTP Config         FTPVoyager.ftp
 Library            crypt32.dll
 Library            kernel32.dll
 Library            mozsqlite3.dll
-Library            msi.dll
-Library            netapi32.dll
-Library            nss3.dll
-Library            ole32.dll
-Library            pstorec.dll
-Library            shell32.dll
-Library            shlwapi.dll
-Library            advapi32.dll
-Library            sqlite3.dll
-Library            user32.dll
 Library            userenv.dll
 Library            wand.dat
 Library            wininet.dll
