@@ -65,10 +65,7 @@ def get(pe, filename):
 	tstamp = pe.FILE_HEADER.TimeDateStamp	# timestamp -> (pe)
 	tsdate = datetime.datetime.fromtimestamp(tstamp) # timestamp in date
 
-	md5  	= get_hash(pe, filename)[0] # hash md5 -> (pe, filename)
-	sha1 	= get_hash(pe, filename)[1] # hash sha1 -> (pe, filename)
-	imphash = get_hash(pe, filename)[2] # import hash -> (pe, filename)
-
+	md5, sha1, imphash = get_hash(pe, filename) # get md5, sha1, imphash -> (pe, filename)
 	# directory -> (pe)
 	dirlist = directories.get(pe)
 	
