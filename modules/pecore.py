@@ -27,6 +27,7 @@ import cert
 import peid
 import loadfile
 import apiantidbg
+import xor
 import antivm
 import apialert
 import secalert
@@ -58,6 +59,10 @@ def get_packer(pe):
 def get_antidbg(pe):
 	show_antidbg = apiantidbg.get(pe)
 	return json.dumps({"Anti Debug": show_antidbg}, indent=4, separators=(',', ': '))
+
+def get_xor(pe):
+	show_xor = xor.get(pe)
+	return json.dumps({"Xor": show_xor[0], "Offset": show_xor[1]}, indent=4, separators=(',', ': '))
 		
 def get_antivm(filename):
 	show_antivm = antivm.get(filename)
@@ -112,4 +117,3 @@ def get_dir(pe, d):
 		return directory.get_debug(pe)
 	if d == "tls":
 		return directory.get_tls(pe)
-
