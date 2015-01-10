@@ -218,5 +218,5 @@ Other
 
 This tool is currently maintained by Gianni 'guelfoweb' Amato, who can be contacted at guelfoweb@gmail.com or twitter `@guelfoweb <http://twitter.com/guelfoweb>`_. Suggestions and criticism are welcome.
 
-Sponsored by `Security Side <http://www.securityside.it/>`_**.
+Sponsored by `Security Side <http://www.securityside.it/>`_.
 
