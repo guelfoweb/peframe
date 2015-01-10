@@ -84,8 +84,10 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,xor,apialert,sectionsalert,file
 	print "Hash SHA-1".ljust(18), str(hashsha1)
 	if hashimport:
 		print "Imphash".ljust(18), str(hashimport)
-	print "Detected".ljust(18), ', '.join(detected)
-	print "Directory".ljust(18), ', '.join(directory)
+	if detected:
+		print "Detected".ljust(18), ', '.join(detected)
+	if directory:
+		print "Directory".ljust(18), ', '.join(directory)
 
 	# CERT (Digital Signature)
 	if detected:
@@ -138,9 +140,10 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,xor,apialert,sectionsalert,file
 	if xorcheck:
 		print "\nXOR discovered"
 		print "-"*60
-		print "Key length".ljust(18), "Offset (hex)".ljust(18),"Offset (dec)".ljust(18)
+		print "Key length".ljust(18), "Offset (hex)".ljust(18), "Offset (dec)".ljust(18)
 		xor_load = json.loads(xor)
 		xor = xor_load["Offset"]
+
 		for i in xrange(0, len(xor)):
 			print str(xor[i][0]).ljust(18), hex(xor[i][1]).ljust(18), xor[i][1]
 
