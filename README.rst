@@ -9,9 +9,9 @@ Usage
 
 .. code-block:: bash
 
-    $ peframe.py malware.exe
+    $ peframe malware.exe
 
-    $ peframe.py [--option] malware.exe
+    $ peframe [--option] malware.exe
 
 Options
 -------
@@ -39,6 +39,8 @@ Install
 
 **Prerequisites**
 
+.. code-block::
+
     Python 2.6.5 -> 2.7.x
 
 **Install**
@@ -54,7 +56,6 @@ Example
 .. code-block::
 
     $ peframe malware.exe
-
 
     Short information
     ------------------------------------------------------------
