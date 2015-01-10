@@ -2,7 +2,7 @@
 PEframe
 =======
 
-PEframe is a open source tool to perform static analysis on <a href="http://en.wikipedia.org/wiki/Portable_Executable">Portable Executable</a> malware.
+PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware.
 
 Usage
 -----
@@ -11,7 +11,7 @@ Usage
 
     $ peframe.py malware.exe
 
-    $ peframe.py **[--option]** malware.exe
+    $ peframe.py [--option] malware.exe
 
 Options
 -------
@@ -41,7 +41,7 @@ Install
 
     Python 2.6.5 -> 2.7.x
 
-** Install **
+**Install**
 
 .. code-block:: bash
 
@@ -53,7 +53,7 @@ Example
 
 .. code-block::
 
-    $ peframe malware.exe</code>
+    $ peframe malware.exe
 
 
     Short information
@@ -202,20 +202,21 @@ Example
 Credit
 ------
 
-PEframe include <a href="https://code.google.com/p/pefile/">pefile</a> module written by Ero Carrera and <a href="http://code.google.com/p/pyew/source/browse/plugins/vmdetect.py">Anti Virtual Machine signature</a> written by Joxean Koret.
+PEframe include `pefile <https://code.google.com/p/pefile/>`_ module written by Ero Carrera and `Anti Virtual Machine signature <http://code.google.com/p/pyew/source/browse/plugins/vmdetect.py>`_ written by Joxean Koret.
 
 Talk about...
 -------------
 
-  * <a href="http://digital-forensics.sans.org/blog/2014/03/04/tools-for-analyzing-static-properties-of-suspicious-files-on-windows">Tools for Analyzing Static Properties of Suspicious Files on Windows</a> *(SANS Digital Forensics and Incident Response, Lenny Zeltser).*
-  * <a href="http://www.cyberdefensemagazine.com/newsletters/august-2013/index.html#p=26">Automated Static and Dynamic Analysis of Malware</a> *(Cyber Defence Magazine, Andrew Browne, Director Malware Lab Lavasoft).*
-  * <a href="https://eforensicsmag.com/malware-analysis-2/">Suspicious File Analysis with PEframe</a> *(eForensics Magazine, Chintan Gurjar)*
-  * <a href="http://cert.ssi.gouv.fr/site/CERTFR-2014-ACT-030/index.html">Bulletin CERTFR-2014-ACT-030</a> *(PEframe was mentioned in the security bulletin by CERT FR)*
+  * `Tools for Analyzing Static Properties of Suspicious Files on Windows <http://digital-forensics.sans.org/blog/2014/03/04/tools-for-analyzing-static-properties-of-suspicious-files-on-windows>`_ *(SANS Digital Forensics and Incident Response, Lenny Zeltser).*
+  * `Automated Static and Dynamic Analysis of Malware <http://www.cyberdefensemagazine.com/newsletters/august-2013/index.html#p=26>`_ *(Cyber Defence Magazine, Andrew Browne, Director Malware Lab Lavasoft).*
+  * `Suspicious File Analysis with PEframe <https://eforensicsmag.com/malware-analysis-2/>`_ *(eForensics Magazine, Chintan Gurjar)*
+  * `Bulletin CERTFR-2014-ACT-030 <http://cert.ssi.gouv.fr/site/CERTFR-2014-ACT-030/index.html>`_ *(PEframe was mentioned in the security bulletin by CERT FR)*
 
 
 Other
 -----
 
-This tool is currently maintained by Gianni 'guelfoweb' Amato, who can be contacted at guelfoweb@gmail.com or twitter <a href="http://twitter.com/guelfoweb">@guelfoweb</a>. Suggestions and criticism are welcome.
+This tool is currently maintained by Gianni 'guelfoweb' Amato, who can be contacted at guelfoweb@gmail.com or twitter `@guelfoweb <http://twitter.com/guelfoweb>`_. Suggestions and criticism are welcome.
 
-Sponsored by **<a href="http://www.securityside.it/">Security Side</a>**.
+Sponsored by `Security Side <http://www.securityside.it/>`_**.
+
