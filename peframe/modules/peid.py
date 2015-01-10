@@ -18,28 +18,23 @@
 # ----------------------------------------------------------------------
 
 import os
+import pefile
+import peutils
+from peframe import get_data
 
-import loadfile
 
-try:
-	import pefile
-	import peutils
-except ImportError:
-	print 'Error: import pefile or peutils modules failed.'
-	exit(0)
-
-# Load array by file alerts.txt
-fn_apialert	= os.path.abspath('signatures' + os.sep + 'alerts.txt') #	return pathname
-alerts 		= loadfile.get(fn_apialert)
+# Load PEID userdb.txt database
+fn_userdb 	= get_data('userdb.txt')
 
 def get(pe):
-	apialert_found = []
-	if hasattr(pe, 'DIRECTORY_ENTRY_IMPORT'):
-		for lib in pe.DIRECTORY_ENTRY_IMPORT:
-			for imp in lib.imports:
-				for alert in alerts:
-					if alert: # remove 'null'
-						if str(imp.name).startswith(alert):
-							apialert_found.append(imp.name)
+	signatures = peutils.SignatureDatabase(fn_userdb)
+	matches = signatures.match_all(pe,ep_only = True)
+	array = []
+	if matches:
+		for item in matches:
+			# remove duplicate
+			if item[0] not in array:
+				array.append(item[0])
 
-	return sorted(set(apialert_found))
+	return array
+

@@ -18,8 +18,8 @@
 # ----------------------------------------------------------------------
 
 import os
-
 import loadfile
+from peframe import get_data
 
 try:
 	import pefile
@@ -28,20 +28,17 @@ except ImportError:
 	print 'Error: import pefile or peutils modules failed.'
 	exit(0)
 
-# Load array by file antidbg.txt - Suspicious Functions Anti Debug
-fn_antidbg	= os.path.abspath('signatures' + os.sep + 'antidbg.txt') # return pathname
-antidbgs	= loadfile.get_apilist(fn_antidbg)
+# Load array by file alerts.txt
+alerts 		= loadfile.get(get_data('alerts.txt'))
 
 def get(pe):
-	array = []
-	DEI   = hasattr(pe, 'DIRECTORY_ENTRY_IMPORT')
-	if DEI:
+	apialert_found = []
+	if hasattr(pe, 'DIRECTORY_ENTRY_IMPORT'):
 		for lib in pe.DIRECTORY_ENTRY_IMPORT:
 			for imp in lib.imports:
-				for antidbg in antidbgs:
-					if antidbg:
-						if str(imp.name).startswith(antidbg):
-							array.append(imp.name)
-							
-		return sorted(set(array))
+				for alert in alerts:
+					if alert: # remove 'null'
+						if str(imp.name).startswith(alert):
+							apialert_found.append(imp.name)
 
+	return sorted(set(apialert_found))

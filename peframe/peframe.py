@@ -19,14 +19,10 @@ import os, sys
 import time, datetime
 import json
 
-sys.path.insert(0, 'modules')
+# sys.path.insert(0, 'modules')
 
-import pefile
-import peutils
+from modules import pefile, peutils, pecore, stdoutput, help
 
-import pecore
-import stdoutput
-import help
 
 def is_pe(filename):
 	try:
@@ -63,58 +59,65 @@ def autoanalysis(pe, filename, json=False):
 			pecore.get_fileurl(filename), \
 			pecore.get_meta(pe))
 
+
+
 #______________________Main______________________
 
+def main():
 
-# Manage Args
-if len(sys.argv) == 1 or len(sys.argv) > 3:
-	help.help()
-	exit(0)
-
-if len(sys.argv) == 2 and sys.argv[1] == "-h" or sys.argv[1] == "--help":
-	help.help()
-	exit(0)
-
-if len(sys.argv) == 2 and sys.argv[1] == "-v" or sys.argv[1] == "--version":
-	print help.VERSION
-	exit(0)
-
-# Auto Analysis
-if len(sys.argv) == 2:
-	filename = sys.argv[1]
-	is_pe(filename)
-	autoanalysis(pe, filename)
-
-# Options
-if len(sys.argv) == 3:
-	option   = sys.argv[1]
-	filename = sys.argv[2]
-	is_pe(filename)
-
-	if option == "--json":
-		autoanalysis(pe, filename, json=True); exit(0)
-		
-	elif option == "--import":
-		stdoutput.show_import(pe); exit(0)
-	elif option == "--export":
-		stdoutput.show_export(pe); exit(0)
-		
-	elif option == "--dir-import":
-		stdoutput.show_directory(pe, "import"); exit(0)
-	elif option == "--dir-export":
-		stdoutput.show_directory(pe, "export"); exit(0)
-	elif option == "--dir-resource":
-		stdoutput.show_directory(pe, "resource"); exit(0)
-	elif option == "--dir-debug":
-		stdoutput.show_directory(pe, "debug"); exit(0)
-	elif option == "--dir-tls":
-		stdoutput.show_directory(pe, "tls"); exit(0)
-		
-	elif option == "--strings":
-		print pecore.get_strings(filename); sys.exit(0)
-	elif option == "--sections":
-		print pecore.get_sections(pe); sys.exit(0)
-	elif option == "--dump":
-		print pecore.get_dump(pe); sys.exit(0)
-	else:
+	# Manage Args
+	if len(sys.argv) == 1 or len(sys.argv) > 3:
 		help.help()
+		exit(0)
+
+	if len(sys.argv) == 2 and sys.argv[1] == "-h" or sys.argv[1] == "--help":
+		help.help()
+		exit(0)
+
+	if len(sys.argv) == 2 and sys.argv[1] == "-v" or sys.argv[1] == "--version":
+		print help.VERSION
+		exit(0)
+
+	# Auto Analysis
+	if len(sys.argv) == 2:
+		filename = sys.argv[1]
+		is_pe(filename)
+		autoanalysis(pe, filename)
+
+	# Options
+	if len(sys.argv) == 3:
+		option   = sys.argv[1]
+		filename = sys.argv[2]
+		is_pe(filename)
+
+		if option == "--json":
+			autoanalysis(pe, filename, json=True); exit(0)
+			
+		elif option == "--import":
+			stdoutput.show_import(pe); exit(0)
+		elif option == "--export":
+			stdoutput.show_export(pe); exit(0)
+			
+		elif option == "--dir-import":
+			stdoutput.show_directory(pe, "import"); exit(0)
+		elif option == "--dir-export":
+			stdoutput.show_directory(pe, "export"); exit(0)
+		elif option == "--dir-resource":
+			stdoutput.show_directory(pe, "resource"); exit(0)
+		elif option == "--dir-debug":
+			stdoutput.show_directory(pe, "debug"); exit(0)
+		elif option == "--dir-tls":
+			stdoutput.show_directory(pe, "tls"); exit(0)
+			
+		elif option == "--strings":
+			print pecore.get_strings(filename); sys.exit(0)
+		elif option == "--sections":
+			print pecore.get_sections(pe); sys.exit(0)
+		elif option == "--dump":
+			print pecore.get_dump(pe); sys.exit(0)
+		else:
+			help.help()
+
+
+if __name__ == '__main__':
+	main()
