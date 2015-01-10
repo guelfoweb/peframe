@@ -4,7 +4,6 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-print here
 # Get the long description from the relevant file
 with open(path.join(here, 'CHANGELOG.rst'), encoding='utf-8') as f:
     long_description = f.read()
