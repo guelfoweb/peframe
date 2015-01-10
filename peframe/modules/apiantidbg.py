@@ -18,23 +18,29 @@
 # ----------------------------------------------------------------------
 
 import os
+import loadfile
+from peframe import get_data
 
-import pefile
-import peutils
+try:
+	import pefile
+	import peutils
+except ImportError:
+	print 'Error: import pefile or peutils modules failed.'
+	exit(0)
 
-
-# Load PEID userdb.txt database
-fn_userdb = os.path.abspath('signatures' + os.sep + 'userdb.txt')
+# Load array by file antidbg.txt - Suspicious Functions Anti Debug
+antidbgs	= loadfile.get_apilist(get_data('antidbg.txt'))
 
 def get(pe):
-	signatures = peutils.SignatureDatabase(fn_userdb)
-	matches = signatures.match_all(pe,ep_only = True)
 	array = []
-	if matches:
-		for item in matches:
-			# remove duplicate
-			if item[0] not in array:
-				array.append(item[0])
-
-	return array
+	DEI   = hasattr(pe, 'DIRECTORY_ENTRY_IMPORT')
+	if DEI:
+		for lib in pe.DIRECTORY_ENTRY_IMPORT:
+			for imp in lib.imports:
+				for antidbg in antidbgs:
+					if antidbg:
+						if str(imp.name).startswith(antidbg):
+							array.append(imp.name)
+							
+		return sorted(set(array))
 
