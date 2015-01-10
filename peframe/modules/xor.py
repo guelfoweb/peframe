@@ -26,7 +26,7 @@ def xor_delta(s, key_len = 1):
     for x in xrange(key_len, len(s)):
         delta[x - key_len] ^= delta[x]
          
-    #return the delta as a string
+    """ return the delta as a string """
     return delta.tostring()[:-key_len]
  
 def get(filename):
