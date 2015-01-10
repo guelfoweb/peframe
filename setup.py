@@ -20,10 +20,10 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/pypa/sampleproject',
+    url='https://github.com/guelfoweb/peframe',
 
     # Author details
-    author='Gianni',
+    author='Gianni Amato',
     author_email='guelfoweb@gmail.com',
 
     # Choose your license
