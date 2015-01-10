@@ -63,7 +63,12 @@ def get(pe, filename):
 	nsec  = pe.FILE_HEADER.NumberOfSections	# num sections -> use (pe)
 
 	tstamp = pe.FILE_HEADER.TimeDateStamp	# timestamp -> (pe)
-	tsdate = datetime.datetime.fromtimestamp(tstamp) # timestamp in date
+	try:
+		""" return date """
+		tsdate = datetime.datetime.fromtimestamp(tstamp)
+	except:
+		""" return timestamp """
+		tsdate = str(tstamp) + " [Invalid date]"
 
 	md5, sha1, imphash = get_hash(pe, filename) # get md5, sha1, imphash -> (pe, filename)
 	# directory -> (pe)
@@ -84,8 +89,8 @@ def get(pe, filename):
 		detected.append("Anti Debug")
 
 	xorcheck = xor.get(filename) 	# Xor
-	if xorcheck[0]:
-		detected.append("Xor")
+	if xorcheck[0] and xorcheck[1]:
+			detected.append("Xor")
 
 	antivirtualmachine = antivm.get(filename) # anti virtual machine
 	if antivirtualmachine:
