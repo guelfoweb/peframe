@@ -17,16 +17,15 @@
 # along with PEframe. If not, see <http://www.gnu.org/licenses/>.
 # ----------------------------------------------------------------------
 
-import os
+__title__ = "peframe"
+__summary__ = "PEframe is a open source tool to perform static analysis " \
+              "on Portable Executable malware."
+__uri__ = "https://github.com/guelfoweb/peframe"
 
+__version__ = "4.1"
 
-from .__about__ import (
-    __author__, __copyright__, __email__, __license__, __summary__, __title__,
-    __uri__, __version__
-)
+__author__ = "Gianni 'guelfoweb' Amato"
+__email__ = "guelfoweb@gmail.com"
 
-_ROOT = os.path.abspath(os.path.dirname(__file__))
-
-
-def get_data(path):
-    return os.path.join(_ROOT, 'signatures', path)
+__license__ = "GNU General Public License"
+__copyright__ = "Copyright 2014 %s" % __author__

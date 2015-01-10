@@ -15,109 +15,127 @@
 # along with PEframe. If not, see <http://www.gnu.org/licenses/>.
 # ----------------------------------------------------------------------
 
-import os, sys
-import time, datetime
+import os
+import sys
+import time
+import datetime
 import json
+import argparse
 
-# sys.path.insert(0, 'modules')
-
-from modules import pefile, peutils, pecore, stdoutput, help
+from modules import pefile, peutils, pecore, stdoutput
+from . import __version__, __summary__
 
 
 def is_pe(filename):
-	try:
-		global pe
-		pe = pefile.PE(filename)
-		return True
-	except:
-		print "Error: invalid file"
-		exit(0)
+    try:
+        return pefile.PE(filename)
+    except:
+        msg = "%r is not a valid PE file" % filename
+        raise argparse.ArgumentTypeError(msg)
+
 
 def autoanalysis(pe, filename, json=False):
-	if json:
-		print pecore.get_info(pe, filename), \
-			pecore.get_cert(pe), \
-			pecore.get_packer(pe), \
-			pecore.get_antidbg(pe), \
-			pecore.get_antivm(filename), \
-			pecore.get_xor(filename), \
-			pecore.get_apialert(pe), \
-			pecore.get_secalert(pe), \
-			pecore.get_fileurl(filename), \
-			pecore.get_meta(pe)
+    if json:
+        print pecore.get_info(pe, filename), \
+            pecore.get_cert(pe), \
+            pecore.get_packer(pe), \
+            pecore.get_antidbg(pe), \
+            pecore.get_antivm(filename), \
+            pecore.get_xor(filename), \
+            pecore.get_apialert(pe), \
+            pecore.get_secalert(pe), \
+            pecore.get_fileurl(filename), \
+            pecore.get_meta(pe)
 
-	else:
-		stdoutput.show_auto(
-			pecore.get_info(pe, filename), \
-			pecore.get_cert(pe), \
-			pecore.get_packer(pe), \
-			pecore.get_antidbg(pe), \
-			pecore.get_antivm(filename), \
-			pecore.get_xor(filename), \
-			pecore.get_apialert(pe), \
-			pecore.get_secalert(pe), \
-			pecore.get_fileurl(filename), \
-			pecore.get_meta(pe))
+    else:
+        stdoutput.show_auto(
+            pecore.get_info(pe, filename),
+            pecore.get_cert(pe),
+            pecore.get_packer(pe),
+            pecore.get_antidbg(pe),
+            pecore.get_antivm(filename),
+            pecore.get_xor(filename),
+            pecore.get_apialert(pe),
+            pecore.get_secalert(pe),
+            pecore.get_fileurl(filename),
+            pecore.get_meta(pe))
 
-
-
-#______________________Main______________________
 
 def main():
 
-	# Manage Args
-	if len(sys.argv) == 1 or len(sys.argv) > 3:
-		help.help()
-		exit(0)
+    parser = argparse.ArgumentParser(
+        prog="peframe", usage="%(prog)s [options] malware.exe",
+        description=__summary__)
+    parser.add_argument("malware")
+    parser.add_argument("-v", "--version", help="Version",
+                        action="version", version="%(prog)s " + __version__)
+    parser.add_argument(
+        "--json", help="Output in json", action="store_true")
+    parser.add_argument(
+        "--imports", help="Imported DLL and functions", action="store_true")
+    parser.add_argument(
+        "--exports", help="Exported functions", action="store_true")
+    parser.add_argument(
+        "--dir-import", help="Import directory", action="store_true")
+    parser.add_argument(
+        "--dir-export", help="Export directory", action="store_true")
+    parser.add_argument(
+        "--dir-resource", help="Resource directory", action="store_true")
+    parser.add_argument(
+        "--dir-debug", help="Debug directory", action="store_true")
+    parser.add_argument(
+        "--dir-tls", help="TLS directory", action="store_true")
+    parser.add_argument(
+        "--strings", help="Get all strings", action="store_true")
+    parser.add_argument(
+        "--sections", help="Sections information", action="store_true")
+    parser.add_argument(
+        "--dump", help="Dump all information", action="store_true")
 
-	if len(sys.argv) == 2 and sys.argv[1] == "-h" or sys.argv[1] == "--help":
-		help.help()
-		exit(0)
+    args = parser.parse_args()
 
-	if len(sys.argv) == 2 and sys.argv[1] == "-v" or sys.argv[1] == "--version":
-		print help.VERSION
-		exit(0)
+    filename = args.malware
+    pe = is_pe(filename)
 
-	# Auto Analysis
-	if len(sys.argv) == 2:
-		filename = sys.argv[1]
-		is_pe(filename)
-		autoanalysis(pe, filename)
+    # Auto Analysis
+    if len(sys.argv) == 2:
+        autoanalysis(pe, filename)
 
-	# Options
-	if len(sys.argv) == 3:
-		option   = sys.argv[1]
-		filename = sys.argv[2]
-		is_pe(filename)
+    if args.json:
+        autoanalysis(pe, filename, json=True)
 
-		if option == "--json":
-			autoanalysis(pe, filename, json=True); exit(0)
-			
-		elif option == "--import":
-			stdoutput.show_import(pe); exit(0)
-		elif option == "--export":
-			stdoutput.show_export(pe); exit(0)
-			
-		elif option == "--dir-import":
-			stdoutput.show_directory(pe, "import"); exit(0)
-		elif option == "--dir-export":
-			stdoutput.show_directory(pe, "export"); exit(0)
-		elif option == "--dir-resource":
-			stdoutput.show_directory(pe, "resource"); exit(0)
-		elif option == "--dir-debug":
-			stdoutput.show_directory(pe, "debug"); exit(0)
-		elif option == "--dir-tls":
-			stdoutput.show_directory(pe, "tls"); exit(0)
-			
-		elif option == "--strings":
-			print pecore.get_strings(filename); sys.exit(0)
-		elif option == "--sections":
-			print pecore.get_sections(pe); sys.exit(0)
-		elif option == "--dump":
-			print pecore.get_dump(pe); sys.exit(0)
-		else:
-			help.help()
+    if args.imports:
+        stdoutput.show_import(pe)
+
+    if args.exports:
+        stdoutput.show_export(pe)
+
+    if args.dir_import:
+        stdoutput.show_directory(pe, "import")
+
+    if args.dir_export:
+        stdoutput.show_directory(pe, "export")
+
+    if args.dir_resource:
+        stdoutput.show_directory(pe, "resource")
+
+    if args.dir_debug:
+        stdoutput.show_directory(pe, "debug")
+
+    if args.dir_tls:
+        stdoutput.show_directory(pe, "tls")
+
+    if args.strings:
+        print pecore.get_strings(filename)
+
+    if args.sections:
+        print pecore.get_sections(pe)
+
+    if args.dump:
+        print pecore.get_dump(pe)
+
+    return 0
 
 
 if __name__ == '__main__':
-	main()
+    sys.exit(main())
