@@ -137,7 +137,7 @@ def show_auto(info,cert_dump,peid,antidbg,antivm,xor,apialert,sectionsalert,file
 				print "Trick".ljust(18), antivm_matched[i]
 
 	# XOR
-	if xorcheck:
+	if "Xor" in detected:
 		print "\nXOR discovered"
 		print "-"*60
 		print "Key length".ljust(18), "Offset (hex)".ljust(18), "Offset (dec)".ljust(18)
