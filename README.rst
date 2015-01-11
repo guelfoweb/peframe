@@ -45,7 +45,7 @@ Install
 
 **Install**
 
-from git
+* from git
 
 .. code-block::
 
@@ -55,7 +55,7 @@ from git
 
    $ python setup install
 
-from pypi
+* from pypi
 
 .. code-block:: bash
 
