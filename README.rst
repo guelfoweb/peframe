@@ -49,7 +49,7 @@ Install
 
 .. code-block:: bash
 
-    $ pip install https://github.com/guelfoweb/peframe/archive/master.zip
+    # pip install https://github.com/guelfoweb/peframe/archive/master.zip
 
 * from git
 
@@ -59,7 +59,7 @@ Install
 
    $ cd peframe-master
 
-   $ python setup install
+   # python setup.py install
 
 
 Example
