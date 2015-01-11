@@ -45,7 +45,17 @@ Install
 
 **Install**
 
-From Git
+ from git
+
+.. code-block::
+
+   $ git clone https://github.com/guelfoweb/peframe.git
+
+   $ cd peframe-master
+
+   $ python setup install
+
+from pypi
 
 .. code-block:: bash
 
