@@ -19,7 +19,7 @@
 
 # About
 NAME		= "PEframe"
-VERSION		= "4.1"
+VERSION		= "4.2"
 AUTHOR		= "Author: Gianni 'guelfoweb' Amato"
 GITHUB		= "Github: https://github.com/guelfoweb/peframe"
 INFO		= NAME+" v."+VERSION+" - Open Source Project\n"+AUTHOR+"\n"+GITHUB
