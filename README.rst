@@ -53,7 +53,7 @@ Install
 
 * from git
 
-.. code-block::
+.. code-block:: bash
 
    $ git clone https://github.com/guelfoweb/peframe.git
 
