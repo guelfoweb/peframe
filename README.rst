@@ -45,7 +45,7 @@ Install
 
 **Install**
 
- from git
+from git
 
 .. code-block::
 
