@@ -45,6 +45,12 @@ Install
 
 **Install**
 
+* from pypi
+
+.. code-block:: bash
+
+    $ pip install https://github.com/guelfoweb/peframe/archive/master.zip
+
 * from git
 
 .. code-block::
@@ -54,12 +60,6 @@ Install
    $ cd peframe-master
 
    $ python setup install
-
-* from pypi
-
-.. code-block:: bash
-
-    $ pip install https://github.com/guelfoweb/peframe/archive/master.zip
 
 
 Example
