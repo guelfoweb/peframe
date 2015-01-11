@@ -47,13 +47,13 @@ Install
 
 * from pypi
 
-.. code-block:: bash
+ .. code-block:: bash
 
-    # pip install https://github.com/guelfoweb/peframe/archive/master.zip
+   # pip install https://github.com/guelfoweb/peframe/archive/master.zip
 
 * from git
 
-.. code-block:: bash
+ .. code-block:: bash
 
    $ git clone https://github.com/guelfoweb/peframe.git
 
