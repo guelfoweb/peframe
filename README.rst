@@ -45,6 +45,8 @@ Install
 
 **Install**
 
+From Git
+
 .. code-block:: bash
 
     $ pip install https://github.com/guelfoweb/peframe/archive/master.zip
