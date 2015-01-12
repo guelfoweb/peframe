@@ -57,7 +57,7 @@ from git
 
    $ git clone https://github.com/guelfoweb/peframe.git
 
-   $ cd peframe-master
+   $ cd peframe
 
    # python setup.py install
 
