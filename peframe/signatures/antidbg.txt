@@ -7,7 +7,6 @@ IsDebugged
 IsDebuggerPresent
 NtCreateThreadEx
 NtGlobalFlags
-NtQueryInformationProcess (Questa funzione si trova all'interno del file Ntdll.dll e non è una funzione esportata.)
 NtSetInformationThread
 OutputDebugString
 pbIsPresent
