@@ -15,7 +15,7 @@ Usage
     
     $ peframe --strings <filename>  Strings output
     
-You can edit 'stringsmatch.json' file to configure your fuzzer.
+You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/5beta/peframe/signatures/stringsmatch.json>`_ file to configure your fuzzer.
 
 Simple schema
 -------------
