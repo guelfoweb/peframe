@@ -17,6 +17,11 @@ Usage
     
 You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/5beta/peframe/signatures/stringsmatch.json>`_ file to configure your fuzzer.
 
+Output example
+--------------
+
+User (short) output example on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_, for JSON (full) output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
+
 Simple schema
 -------------
 
@@ -51,8 +56,6 @@ Simple schema
 			"resources_info": list
 		}
 	}
-
-User (short) output example on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_, for JSON (full) output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
 
 Install
 -------
