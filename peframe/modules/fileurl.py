@@ -1,177 +1,123 @@
 #!/usr/bin/env python
 
 # ----------------------------------------------------------------------
-# This file is part of PEframe.
+# The MIT License (MIT)
 #
-# PEframe is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
-# (at your option) any later version.
+# Copyright (c) 2015 Gianni Amato
 #
-# PEframe is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+# the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
 #
-# You should have received a copy of the GNU General Public License
-# along with PEframe. If not, see <http://www.gnu.org/licenses/>.
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ----------------------------------------------------------------------
 
 import re
+import json
 import string
+import stringstat
 
-# Extract Strings
-printable = set(string.printable)
-def get_process(stream):
-    found_str = ""
-    while True:
-        data = stream.read(1024*4)
-        if not data:
-            break
-        for char in data:
-            if char in printable:
-                found_str += char
-            elif len(found_str) >= 4:
-                yield found_str
-                found_str = ""
-            else:
-                found_str = ""
+def valid_ip(address):
+    try:
+        host_bytes = address.split('.')
+        valid = [int(b) for b in host_bytes]
+        valid = [b for b in valid if b >= 0 and b<=255]
+        return len(host_bytes) == 4 and len(valid) == 4
+    except:
+        return False
 
-def get(filename):
-	PEtoStr        = open(filename, 'rb')
-	array          = [] # word raw
-	arrayURL       = [] # url
-	arrayFILE      = [] # file raw
-	arrayFileNames = [] # description, filename
+def get(filename, strings_match):
+	strings_info = json.loads(stringstat.get(filename))
+	strings_list = strings_info['content']
+	ip_list = []
+	file_list = []
+	filetype_dict = {}
+	url_list = []
+	fuzzing_dict = {}
+	apialert_list = []
+	antidbg_list = []
 
-	for found_str in get_process(PEtoStr):
-		fname = re.findall("(.+\.([a-z]{2,3}$))+", found_str, re.IGNORECASE | re.MULTILINE)
+	# Get filetype and fuzzing
+	file_type = strings_match['filetype'].items()
+	fuzzing_list = strings_match['fuzzing'].items()
+
+	# Strings analysis
+	for string in strings_list:
+		# URL list
+		urllist = re.findall(r'((smb|srm|ssh|ftps?|file|https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', string, re.MULTILINE)
+		if urllist:
+			for url in urllist:
+				url_list.append(url[0])
+
+		# IP list
+		iplist = re.findall(r'[0-9]+(?:\.[0-9]+){3}', string, re.MULTILINE)
+		if iplist:
+			for ip in iplist:
+				if valid_ip(str(ip)) and not re.findall(r'[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}\.0', str(ip)):
+					ip_list.append(str(ip))
+
+		# FILE list
+		fname = re.findall("(.+(\.([a-z]{2,3}$)|\/.+\/|\\\.+\\\))+", string, re.IGNORECASE | re.MULTILINE)
 		if fname:
-			word = fname[0][0]
-			array.append(word)
-			
-	for elem in sorted(set(array)):
-		match = re.search("^http:|^ftp:|^sftp:|^ssh:|^www|.com$|.org$|.it$|.co.uk$|.ru$|.jp$|.net$|.ly$|.gl$|^([0-9]{1,3})(?:\.[0-9]{1,3}){3}$", elem, re.IGNORECASE)
-		if match and len(elem) > 6: # len(c.it) = 4 <- false positive
-			arrayURL.append(elem)
-		else:
-			arrayFILE.append(elem)
+			for word in fname:
+				word = filter(None, word[0])
+				file_list.append(word)
 
-	for elem in sorted(set(arrayFILE)):
-		file_type = {
-			"Video":".3gp",
-			"Compressed":".7z",
-			"Video":".asf",
-			"Web Page":".asp",
-			"Web Page":".aspx",
-			"Video":".asx",
-			"Video":".avi",
-			"Backup":".bak",
-			"Binary":".bin",
-			"Image":".bmp",
-			"Cabinet":".cab",
-			"Data":".dat",
-			"Database":".db",
-			"Word":".doc",
-			"Word":".docx",
-			"Library":".dll",
-			"Autocad":".dwg",
-			"Executable":".exe",
-			"Email":".eml",
-			"Video":".flv",
-			"FTP Config":".ftp",
-			"Image":".gif",
-			"Compressed":".gz",
-			"Web Page":".htm",
-			"Web Page":".html",
-			"Disc Image":".iso",
-			"Log":".log",
-			"Archive Java":".jar",
-			"Image":".jpg",
-			"Image":".jepg",
-			"Audio":".mp3",
-			"Video":".mp4",
-			"Video":".mpg",
-			"Video":".mpeg",
-			"Video":".mov",
-			"Installer":".msi",
-			"Object":".oca",
-			"Object":".ocx",
-			"Autogen":".olb",
-			"Backup":".old",
-			"Registry":".reg",
-			"Portable":".pdf",
-			"Web Page":".php",
-			"Image":".png",
-			"Slideshow":".pps",
-			"Presentation":".ppt",
-			"Image":".psd",
-			"Email":".pst",
-			"Document":".pub",
-			"Compressed":".rar",
-			"Text":".rtf",
-			"Query DB":".sql",
-			"Adobe Flash":".swf",
-			"Image":".tif",
-			"Temporary":".tmp",
-			"Text":".txt",
-			"Compressed":".tgz",
-			"Audio":".wav",
-			"Audio":".wma",
-			"Video":".wmv",
-			"Excel":".xls",
-			"Excel":".xlsx",
-			"Compressed":".zip"
-		}
-
-		for descr in file_type:
-			match = re.search(file_type[descr]+"$", elem, re.IGNORECASE)
-			if match:
-				arrayFileNames.append([descr, elem])
-
-	filelist = []
+	# Purge list
+	ip_list = filter(None, list(set([item for item in ip_list])))
+	url_list = filter(None, list(set([item for item in url_list])))
 	
-	if arrayFileNames:
-		"""
-		arrayFileNames ->
+	# Initialize filetype
+	for key, value in file_type:
+		filetype_dict[key] = []
 
-		[ ['Web Page', 'gate.php'], 
-		['Binary',   'core_x86.bin'], 
-		['Binary',   'dropper_x86.bin'], 
-		['Library',  'IPHLPAPI.DLL'],
-		['Library',  'WININET.dll'] ]
-		"""
-		# Get unique tuple from list
-		uniq_descr = []
-		[item for item in arrayFileNames if item[0] not in uniq_descr and not uniq_descr.append(item[0])]
+	# Search for valid filename
+	array_tmp = []
+	for file in file_list:
+		for key, value in file_type:
+			match = re.findall("\\"+value+"$", file, re.IGNORECASE | re.MULTILINE)
+			if match and file.lower() not in array_tmp and len(file) > 4: 
+				filetype_dict[key].append(file)
+				array_tmp.append(file.lower())
+	
+	# Remove empty key filetype
+	for key, value in filetype_dict.items():
+		if not filetype_dict[key]:
+			del filetype_dict[key]
 
-		# uniq_descr -> ['Web Page', 'Library', 'Binary']
+	# Initialize fuzzing
+	for key, value in fuzzing_list:
+		fuzzing_dict[key] = []
+
+	# Strings analysis for fuzzing
+	array_tmp = []
+	for string in strings_list:
+		for key, value in fuzzing_list:
+			fuzz_match = re.findall(value, string, re.IGNORECASE | re.MULTILINE)
+			if fuzz_match and string.lower() not in array_tmp:
+				fuzzing_dict[key].append(string)
+				array_tmp.append(string.lower())
+
+	# Remove empty key filetype
+	for key, value in filetype_dict.items():
+		if not filetype_dict[key]:
+			del filetype_dict[key]
+
+	# Remove empty key fuzzing
+	for key, value in fuzzing_list:
+		if not fuzzing_dict[key]:
+			del fuzzing_dict[key]
+	
+	return {"file":  filetype_dict, "url": url_list, "ip": ip_list, "fuzzing": fuzzing_dict}
 		
-		found = {}
-		match = []
-		
-		for descr in uniq_descr:
-			for elem in arrayFileNames:
-				if elem[0] == descr:
-					match.append(elem[1])
-			found[descr] = match
-			match = []
-			
-		filelist = found.items()
-
-		"""
-		'print found' -> Dictionary {}
-
-		{ 'Binary': ['core_x86.bin', 'dropper_x86.bin'], 
-		'Web Page': ['gate.php'], 
-		'Library': ['IPHLPAPI.DLL', 'WININET.dll'] }
-
-
-		'print found.items()' -> List []
-
-		[ ('Binary',   ['core_x86.bin', 'dropper_x86.bin']), 
-		('Web Page', ['gate.php']),
-		('Library',  ['IPHLPAPI.DLL', 'WININET.dll']) ]
-		"""
-
-	return filelist, arrayURL

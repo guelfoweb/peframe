@@ -1,20 +1,26 @@
 #!/usr/bin/env python
 
 # ----------------------------------------------------------------------
-# This file is part of PEframe.
+# The MIT License (MIT)
 #
-# PEframe is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
-# (at your option) any later version.
+# Copyright (c) 2015 Gianni Amato
 #
-# PEframe is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+# the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
 #
-# You should have received a copy of the GNU General Public License
-# along with PEframe. If not, see <http://www.gnu.org/licenses/>.
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ----------------------------------------------------------------------
 
 import array
@@ -30,7 +36,7 @@ def xor_delta(s, key_len = 1):
     return delta.tostring()[:-key_len]
  
 def get(filename):
-	check = []
+	check = {}
 	search_file = open(filename, "r").read()
 	key_lengths=[1,2,4,8]
 	search_string = "This program cannot be run in DOS mode."
@@ -45,13 +51,13 @@ def get(filename):
 			offset += 1
 			offset = doc_delta.find(key_delta, offset)
 			if(offset > 0):
-				check.append((l, offset))
+				check.update({l: offset})
 			else:
 				break
 
-	detect = [item for item in check if item[1] == 78]
+	detect = [item for item in check.items() if item[1] == 78]
 
-	if detect:
-		return False, check
+	if detect or check == {}:
+		return {}
 	else:
-		return True, check
+		return check

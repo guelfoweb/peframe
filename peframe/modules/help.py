@@ -1,50 +1,51 @@
 #!/usr/bin/env python
 
 # ----------------------------------------------------------------------
-# This file is part of PEframe.
+# The MIT License (MIT)
 #
-# PEframe is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
-# (at your option) any later version.
+# Copyright (c) 2015 Gianni Amato
 #
-# PEframe is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+# the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
 #
-# You should have received a copy of the GNU General Public License
-# along with PEframe. If not, see <http://www.gnu.org/licenses/>.
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ----------------------------------------------------------------------
 
 # About
-NAME		= "PEframe"
-VERSION		= "4.2"
-AUTHOR		= "Author: Gianni 'guelfoweb' Amato"
-GITHUB		= "Github: https://github.com/guelfoweb/peframe"
-INFO		= NAME+" v."+VERSION+" - Open Source Project\n"+AUTHOR+"\n"+GITHUB
+NAME	= "PEframe"
+VERSION	= "5.0 Beta"
+LICENSE = "MIT"
+AUTHOR	= "Author: Gianni 'guelfoweb' Amato"
+GITHUB	= "Github: https://github.com/guelfoweb/peframe"
+INFO	= NAME+" v."+VERSION+" - Open Source Project - "+LICENSE+" LICENSE\n"+AUTHOR+"\n"+GITHUB
 
 # Help
 def help():
 	print INFO
 	print
 	print "Usage"
-	print "".ljust(4), "peframe.py malware.exe"
-	print "".ljust(4), "peframe.py [--option] malware.exe"
+	print "".ljust(4), "peframe <filename>".ljust(20), "Short output analysis"
 	print
-	print "Option"
-	print "".ljust(4), "--json".ljust(14), "Output in json"
+	print "Options"
+	print "".ljust(4), "--json".ljust(20), "Full output analysis JSON format"
+	print "".ljust(4), "--strings".ljust(20), "Strings output"
 	print
-	print "".ljust(4), "--import".ljust(14), "Imported DLL and functions"
-	print "".ljust(4), "--export".ljust(14), "Exported functions"
+	print "Examples"
+	print "".ljust(4), "peframe malware.exe"
+	print "".ljust(4), "peframe --json malware.exe"
+	print "".ljust(4), "peframe --strings malware.exe"
 	print
-	print "".ljust(4), "--dir-import".ljust(14), "Import directory"
-	print "".ljust(4), "--dir-export".ljust(14), "Export directory"
-	print "".ljust(4), "--dir-resource".ljust(14), "Resource directory"
-	print "".ljust(4), "--dir-debug".ljust(14), "Debug directory"
-	print "".ljust(4), "--dir-tls".ljust(14), "TLS directory"
-	print
-	print "".ljust(4), "--strings".ljust(14), "Get all strings"
-	print "".ljust(4), "--sections".ljust(14), "Sections information"
-	print "".ljust(4), "--dump".ljust(14), "Dump all information"
+	print "Use 'stringsmatch.json' to configure your fuzzer."
 
