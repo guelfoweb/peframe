@@ -1,3 +1,7 @@
+NEW
+---
+A new branch for PEframe 5.0 beta is available https://github.com/guelfoweb/peframe/tree/5beta
+
 =======
 PEframe
 =======
