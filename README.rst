@@ -20,7 +20,7 @@ You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/5beta
 Output example
 --------------
 
-User (short) output example on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_, for JSON (full) output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
+User output (short) example on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_. For JSON output (full) you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
 
 Simple schema
 -------------
