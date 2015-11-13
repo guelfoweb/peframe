@@ -52,7 +52,7 @@ Simple schema
 		}
 	}
 
-User output example on `twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_  | JSON output example on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
+User (short) output example on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_, for JSON (full) output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
 
 Install
 -------
