@@ -2,7 +2,7 @@
 PEframe 5.0 Beta version
 ========================
 
-PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware.
+PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file.
 
 Usage
 -----
@@ -52,7 +52,7 @@ Simple schema
 		}
 	}
 
-JSON output example here: `http://pastebin.com/m17vjwF9 <http://pastebin.com/m17vjwF9/>`_.
+User output example on `twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_  | JSON output example on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
 
 Install
 -------
