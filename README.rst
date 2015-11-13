@@ -20,13 +20,9 @@ You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/5beta
 Output example
 --------------
 
-**Short data**
+**Short data:** For user output example you can see this tweet on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_. 
 
-For user output example you can see this tweet on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_. 
-
-**Full data**
-
-For JSON output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
+**Full data:** For JSON output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
 
 Simple schema
 -------------
