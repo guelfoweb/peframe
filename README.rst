@@ -9,9 +9,13 @@ Usage
 
 .. code-block:: bash
 
-    $ peframe malware.exe
+    $ peframe <filename>            Short output analysis
 
-    $ peframe --strings malware.exe
+    $ peframe --json <filename>     Full output analysis JSON format
+    
+    $ peframe --strings <filename>  Strings output
+    
+You can edit 'stringsmatch.json' file to configure your fuzzer.
 
 Simple schema
 -------------
@@ -48,6 +52,8 @@ Simple schema
 		}
 	}
 
+JSON output example here: `http://pastebin.com/m17vjwF9 <http://pastebin.com/m17vjwF9/>`_.
+
 Install
 -------
 
@@ -63,13 +69,13 @@ from pypi
 
  .. code-block:: bash
 
-   # pip install https://github.com/guelfoweb/peframe/archive/master.zip
+   # pip install https://github.com/guelfoweb/peframe/archive/5beta.zip
 
 from git
 
  .. code-block:: bash
 
-   $ git clone https://github.com/guelfoweb/peframe.git
+   $ git clone -b 5beta https://github.com/guelfoweb/peframe.git
 
    $ cd peframe
 
