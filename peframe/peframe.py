@@ -73,6 +73,7 @@ def get_hash(filename):
 	fh = open(filename, 'rb')
 	m = hashlib.md5()
 	s = hashlib.sha1()
+	s256 = hashlib.sha256()
 	
 	while True:
 		data = fh.read(8192)
@@ -84,12 +85,13 @@ def get_hash(filename):
 
 	md5  = m.hexdigest()
 	sha1 = s.hexdigest()
+	sha256 = s256.hexdigest()
 
 	try:
 		ih = get_imphash(filename)
-		return md5,sha1,ih
+		return md5,sha1,sha256,ih
 	except:
-		return md5,sha1
+		return md5,sha1,sha256
 	
 def get_pe_fileinfo(pe, filename):
 	# is dll?
@@ -107,10 +109,10 @@ def get_pe_fileinfo(pe, filename):
 		""" return timestamp """
 		tsdate = str(tstamp) + " [Invalid date]"
 
-	# get md5, sha1, imphash
+	# get md5, sha1, sha256, imphash
 
-	md5, sha1, imphash = get_hash(filename)
-	hash_info = {"md5": md5, "sha1": sha1}
+	md5, sha1, sha256, imphash = get_hash(filename)
+	hash_info = {"md5": md5, "sha1": sha1, "sha256": sha256}
 	
 	detected = []
 
@@ -204,8 +206,8 @@ def get_fileinfo(filename):
 	ip_info = fileurl_info["ip"]
 	fuzzing_info = fileurl_info["fuzzing"]
 
-	md5, sha1 = get_hash(filename)
-	hash_info = {"md5": md5, "sha1": sha1}
+	md5, sha1, sha256 = get_hash(filename)
+	hash_info = {"md5": md5, "sha1": sha1, "sha256": sha256}
 	
 	return json.dumps({"peframe_ver": help.VERSION,
 						"file_type": ftype, 
@@ -329,8 +331,7 @@ def stdoutput(get_info_from):
 					print "Export function"
 					print "-"*60
 					for func in output['pe_info'][item]:
-						f = len(output['pe_info'][item][func])
-						print func.ljust(15), str(f)
+						print func['function'][0:15].ljust(15), func['address']
 
 				if item == 'sections_info':
 					for secsusp in output['pe_info'][item]:
