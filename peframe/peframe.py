@@ -54,6 +54,7 @@ from modules import resources
 from modules import funcimport
 from modules import funcexport
 from modules import stringstat
+from modules import virustotal
 
 def isfile(filename):
 	if os.path.isfile(filename):
@@ -164,7 +165,10 @@ def get_pe_fileinfo(pe, filename):
 
 	# resources
 	resources_info = resources.get(pe)
-	
+
+	# virustotal
+	virustotal_info = virustotal.get(md5, strings_match)
+
 	return json.dumps({"peframe_ver": help.VERSION,
 						"file_type": ftype,
 						"file_name": fname,
@@ -173,6 +177,7 @@ def get_pe_fileinfo(pe, filename):
 						"file_found": file_info,
 						"url_found": url_info,
 						"ip_found": ip_info,
+						"virustotal": virustotal_info,
 						"fuzzing": fuzzing_info,
 						"pe_info": {
 							"import_hash": imphash,
@@ -218,6 +223,7 @@ def get_fileinfo(filename):
 						"file_found": file_info,
 						"url_found": url_info,
 						"ip_found": ip_info,
+						"virustotal": virustotal_info,
 						"fuzzing": fuzzing_info,
 						"pe_info": False}, 
 						indent=4, separators=(',', ': '))
@@ -233,6 +239,11 @@ def stdoutput(get_info_from):
 	print "File name".ljust(15), output['file_name']
 	print "File size".ljust(15), output['file_size']
 	print "Hash MD5".ljust(15), output['hash']['md5']
+
+	if output['virustotal']:
+		positives = output['virustotal']['positives']
+		total = output['virustotal']['total']
+		print "Virustotal".ljust(15), str(positives)+'/'+str(total)
 
 	if output['pe_info']:
 		for item in output['pe_info']:
