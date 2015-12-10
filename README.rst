@@ -38,6 +38,7 @@ Simple schema
 		"file_found": dict,
 		"url_found": list,
 		"ip_found": list,
+		"virustotal": dict,
 		"fuzzing": list,
 		"pe_info": {
 			"compile_time": string, 
