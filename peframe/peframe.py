@@ -82,6 +82,7 @@ def get_hash(filename):
 
 		m.update(data)
 		s.update(data)
+		s256.update(data)
 
 	md5  = m.hexdigest()
 	sha1 = s.hexdigest()
