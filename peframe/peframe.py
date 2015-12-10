@@ -212,11 +212,11 @@ def get_fileinfo(filename):
 	ip_info = fileurl_info["ip"]
 	fuzzing_info = fileurl_info["fuzzing"]
 
-	# virustotal
-	virustotal_info = virustotal.get(md5, strings_match)
-
 	md5, sha1, sha256 = get_hash(filename)
 	hash_info = {"md5": md5, "sha1": sha1, "sha256": sha256}
+
+	# virustotal
+	virustotal_info = virustotal.get(md5, strings_match)
 	
 	return json.dumps({"peframe_ver": help.VERSION,
 						"file_type": ftype, 
