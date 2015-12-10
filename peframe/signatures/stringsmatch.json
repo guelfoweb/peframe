@@ -1,4 +1,7 @@
 {
+	"virustotal": {
+		"apikey": ""
+	},
 	"fuzzing": {
 		"String too long": "[A-Za-z0-9+/]{80,}",
 		"Possible encoded string": "(\\\\x[abcdef][abcdef|0-9]){3,}",
