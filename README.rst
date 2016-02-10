@@ -20,9 +20,9 @@ You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/maste
 Output example
 --------------
 
-**Short data:** For user output example you can see this tweet on `Twitter <https://twitter.com/guelfoweb/status/664763793340276736>`_. 
+**Short data:** For user output example you can see this paste on Pastebin `Pastebin <http://pastebin.com/hrKNtLMN>`_. 
 
-**Full data:** For JSON output you can see this paste on `Pastebin <http://pastebin.com/m17vjwF9/>`_.
+**Full data:** For JSON output you can see this paste on `Pastebin <http://pastebin.com/tpmdsibd/>`_.
 
 Simple schema
 -------------
@@ -72,13 +72,13 @@ Install
 
 **Install**
 
-from pypi
+To install from PyPI:
 
  .. code-block:: bash
 
    # pip install https://github.com/guelfoweb/peframe/archive/master.zip
 
-from git
+To install from source:
 
  .. code-block:: bash
 
