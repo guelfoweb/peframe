@@ -1,3 +1,14 @@
+5.0 - 2016-02-10
+
+- Added check for mutex object
+
+5.0beta - 2015-11-12
+
+- Added configurable json file in signatures folder
+- Added parsing resource directory
+- Bug fixed in section name with unicode chars
+- Rewrited code structure
+
 4.2 - 2015-01-08
 
 - Added check for XOR Obfuscation
