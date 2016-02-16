@@ -20,9 +20,7 @@ You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/maste
 Output example
 --------------
 
-**Short data:** For user output example you can see this paste on Pastebin `Pastebin <http://pastebin.com/hrKNtLMN>`_. 
-
-**Full data:** For JSON output you can see this paste on `Pastebin <http://pastebin.com/tpmdsibd/>`_.
+`Short data example <http://pastebin.com/hrKNtLMN>`_ | `Full data (JSON) example <http://pastebin.com/tpmdsibd/>`_
 
 Simple schema
 -------------
