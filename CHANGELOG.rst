@@ -4,6 +4,7 @@
 
 5.0beta - 2015-11-12
 
+- Added check for virus total
 - Added configurable json file in signatures folder
 - Added parsing resource directory
 - Bug fixed in section name with unicode chars
