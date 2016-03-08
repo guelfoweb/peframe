@@ -25,7 +25,7 @@
 
 # About
 NAME	= "PEframe"
-VERSION	= "5.0"
+VERSION	= "5.0.1"
 LICENSE = "MIT"
 AUTHOR	= "Author: Gianni 'guelfoweb' Amato"
 GITHUB	= "Github: https://github.com/guelfoweb/peframe"
