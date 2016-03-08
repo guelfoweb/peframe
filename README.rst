@@ -1,6 +1,6 @@
-===========
-PEframe 5.0
-===========
+=============
+PEframe 5.0.1
+=============
 
 PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, and much more information about the suspicious files.
 

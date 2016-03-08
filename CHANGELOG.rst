@@ -1,3 +1,7 @@
+5.0.1 2015-03-08
+
+- Bug fixed in Exception on unnamed exports -> https://github.com/guelfoweb/peframe/issues/12
+
 5.0 - 2016-02-10
 
 - Added check for mutex object

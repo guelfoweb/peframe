@@ -359,7 +359,10 @@ def stdoutput(get_info_from):
 					print "Export function"
 					print "-"*60
 					for func in output['pe_info'][item]:
-						print func['function'][0:15].ljust(15), func['address']
+						if func['function'] is None:
+							print "Unnamed export".ljust(15), func['address']
+						else:
+							print func['function'][0:15].ljust(15), func['address']
 
 				if item == 'sections_info':
 					for secsusp in output['pe_info'][item]:

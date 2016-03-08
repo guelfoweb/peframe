@@ -10,7 +10,7 @@ with open(path.join(here, 'CHANGELOG.rst'), encoding='utf-8') as f:
 setup(
     name='peframe',
 
-    version='5.0',
+    version='5.0.1',
 
     description='PEframe is a open source tool to perform static analysis on Portable Executable malware.',
     long_description=long_description,
@@ -23,7 +23,7 @@ setup(
     license='MIT',
 
     classifiers=[
-        'Development Status :: 5 - Beta',
+        'Development Status :: 5 - Stable',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
