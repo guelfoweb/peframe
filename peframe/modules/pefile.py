@@ -826,6 +826,7 @@ class Structure:
             self.name = name
         else:
             self.name = format[0]
+        self.entropy = None
 
 
     def __get_format__(self):
@@ -1137,7 +1138,9 @@ class SectionStructure(Structure):
     def get_entropy(self):
         """Calculate and return the entropy for the section."""
 
-        return self.entropy_H( self.get_data() )
+        if self.entropy is None:
+            self.entropy = self.entropy_H( self.get_data() )
+        return self.entropy
 
 
     def get_hash_sha1(self):
