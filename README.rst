@@ -97,6 +97,7 @@ Talk about...
   * `Automated Static and Dynamic Analysis of Malware <http://www.cyberdefensemagazine.com/newsletters/august-2013/index.html#p=26>`_ *(Cyber Defence Magazine, Andrew Browne, Director Malware Lab Lavasoft).*
   * `Suspicious File Analysis with PEframe <https://eforensicsmag.com/download/malware-analysis/>`_ *(eForensics Magazine, Chintan Gurjar)*
   * `Bulletin CERTFR-2014-ACT-030 <http://cert.ssi.gouv.fr/site/CERTFR-2014-ACT-030/index.html>`_ *(PEframe was mentioned in the security bulletin by CERT FR)*
+  * `Infosec CERT-PA Malware Analysis <https://infosec.cert-pa.it/analyze/submission.html>`_ *(PEframe is used in the malware analysis engine of Infosec project, developed by Davide Baglieri)*
 
 Other
 -----
