@@ -25,17 +25,18 @@
 
 import re
 import json
-import string
 import stringstat
+
 
 def valid_ip(address):
     try:
         host_bytes = address.split('.')
         valid = [int(b) for b in host_bytes]
-        valid = [b for b in valid if b >= 0 and b<=255]
+        valid = [b for b in valid if b >= 0 and b <= 255]
         return len(host_bytes) == 4 and len(valid) == 4
     except:
         return False
+
 
 def get(filename, strings_match):
     strings_info = json.loads(stringstat.get(filename))
@@ -45,8 +46,6 @@ def get(filename, strings_match):
     filetype_dict = {}
     url_list = []
     fuzzing_dict = {}
-    apialert_list = []
-    antidbg_list = []
 
     # Get filetype and fuzzing
     file_type = strings_match['filetype'].items()
@@ -68,7 +67,7 @@ def get(filename, strings_match):
                     ip_list.append(str(ip))
 
         # FILE list
-        fname = re.findall("(.+(\.([a-z]{2,3}$)|\/.+\/|\\\.+\\\))+", string, re.IGNORECASE | re.MULTILINE)
+        fname = re.findall('(.+(\.([a-z]{2,3}$)|\/.+\/|\\\.+\\\))+', string, re.IGNORECASE | re.MULTILINE)
         if fname:
             for word in fname:
                 word = filter(None, word[0])
@@ -86,7 +85,9 @@ def get(filename, strings_match):
     array_tmp = []
     for file in file_list:
         for key, value in file_type:
-            match = re.findall("\\"+value+"$", file, re.IGNORECASE | re.MULTILINE)
+            match = re.findall(
+                '\\' + value + '$', file, re.IGNORECASE | re.MULTILINE
+            )
             if match and file.lower() not in array_tmp and len(file) > 4:
                 filetype_dict[key].append(file)
                 array_tmp.append(file.lower())
@@ -104,7 +105,9 @@ def get(filename, strings_match):
     array_tmp = []
     for string in strings_list:
         for key, value in fuzzing_list:
-            fuzz_match = re.findall(value, string, re.IGNORECASE | re.MULTILINE)
+            fuzz_match = re.findall(
+                value, string, re.IGNORECASE | re.MULTILINE
+            )
             if fuzz_match and string.lower() not in array_tmp:
                 fuzzing_dict[key].append(string)
                 array_tmp.append(string.lower())
@@ -119,4 +122,9 @@ def get(filename, strings_match):
         if not fuzzing_dict[key]:
             del fuzzing_dict[key]
 
-    return {"file":  filetype_dict, "url": url_list, "ip": ip_list, "fuzzing": fuzzing_dict}
+    return {
+        'file':  filetype_dict,
+        'url': url_list,
+        'ip': ip_list,
+        'fuzzing': fuzzing_dict
+    }
