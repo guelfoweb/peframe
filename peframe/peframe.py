@@ -99,7 +99,7 @@ def get_hash(filename):
     except:
         return md5,sha1,sha256
 
-def get_pe_fileinfo(pe, filename):
+def get_pe_fileinfo(pe, filename, skip_file_url=False):
     # is dll?
     dll = pe.FILE_HEADER.IMAGE_FILE_DLL
 
@@ -153,11 +153,17 @@ def get_pe_fileinfo(pe, filename):
     apialert_info = apialert.get(pe, strings_match)
 
     # file and url
-    fileurl_info = fileurl.get(filename, strings_match)
-    file_info = fileurl_info["file"]
-    url_info = fileurl_info["url"]
-    ip_info = fileurl_info["ip"]
-    fuzzing_info = fileurl_info["fuzzing"]
+    if skip_file_url:
+        file_info = {}
+        url_info = []
+        ip_info = []
+        fuzzing_info = {}
+    else:
+        fileurl_info = fileurl.get(filename, strings_match)
+        file_info = fileurl_info["file"]
+        url_info = fileurl_info["url"]
+        ip_info = fileurl_info["ip"]
+        fuzzing_info = fileurl_info["fuzzing"]
 
     # meta info
     meta_info = meta.get(pe)
@@ -210,16 +216,22 @@ def get_pe_fileinfo(pe, filename):
                         },
                         indent=4, separators=(',', ': '))
 
-def get_fileinfo(filename):
+def get_fileinfo(filename, skip_file_url=False):
     strings_info = json.loads(stringstat.get(filename))
     all_strings = strings_info["content"]
 
     # file and url
-    fileurl_info = fileurl.get(filename, strings_match)
-    file_info = fileurl_info["file"]
-    url_info = fileurl_info["url"]
-    ip_info = fileurl_info["ip"]
-    fuzzing_info = fileurl_info["fuzzing"]
+    if skip_file_url:
+        file_info = {}
+        url_info = []
+        ip_info = []
+        fuzzing_info = {}
+    else:
+        fileurl_info = fileurl.get(filename, strings_match)
+        file_info = fileurl_info["file"]
+        url_info = fileurl_info["url"]
+        ip_info = fileurl_info["ip"]
+        fuzzing_info = fileurl_info["fuzzing"]
 
     md5, sha1, sha256 = get_hash(filename)
     hash_info = {"md5": md5, "sha1": sha1, "sha256": sha256}
@@ -424,17 +436,13 @@ def stdoutput(get_info_from):
                         print meta.ljust(15), output['pe_info'][item][meta]
 
 #______________________Main______________________
-
 def main():
-    if len(sys.argv) == 1 or len(sys.argv) > 3:
+
+    if any([arg in ['-h', '--help'] for arg in sys.argv]):
         help.help()
         exit(0)
 
-    if len(sys.argv) == 2 and sys.argv[1] == "-h" or sys.argv[1] == "--help":
-        help.help()
-        exit(0)
-
-    if len(sys.argv) == 2 and sys.argv[1] == "-v" or sys.argv[1] == "--version":
+    if any([arg in ['-v', '--version'] for arg in sys.argv]):
         print help.VERSION
         exit(0)
 
@@ -468,21 +476,34 @@ def main():
             stdoutput(get_fileinfo(filename)); exit(0)
 
     # Options
-    if len(sys.argv) == 3:
-        option   = sys.argv[1]
-        filename = sys.argv[2]
+    if len(sys.argv) > 2:
+
+        argv = sys.argv[:]
+
+        try:
+            index = argv.index('--skip-file-url')
+            argv.pop(index)
+            skip_file_url = True
+        except ValueError:
+            skip_file_url = False
+
+        option = argv[1]
+        filename = argv[2]
         isfile(filename)
         fname = os.path.basename(filename)
         fsize = os.path.getsize(filename)
         ftype = filetype(filename)
+
         if option == "--json":
             if re.match(r'^PE[0-9]{2}|^MS-DOS', ftype):
                 pe = pefile.PE(filename)
-                print get_pe_fileinfo(pe, filename); exit(0)
+                print get_pe_fileinfo(pe, filename, skip_file_url)
             else:
-                print get_fileinfo(filename); exit(0)
+                print get_fileinfo(filename, skip_file_url)
+            exit(0)
         elif option == "--strings":
-            print stringstat.get(filename); exit(0)
+            print stringstat.get(filename, skip_file_url)
+            exit(0)
         else:
             help.help()
     else:
