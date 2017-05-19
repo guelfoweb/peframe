@@ -68,7 +68,7 @@ def get(filename, strings_match):
 					ip_list.append(str(ip))
 
 		# FILE list
-		fname = re.findall("(.+(\.([a-z]{2,3}$)|\/.+\/|\\\.+\\\))+", string, re.IGNORECASE | re.MULTILINE)
+		fname = re.findall("(.{1,260}(\.([a-z]{2,3}$)|\/.{1,260}\/|\\\.{1,260}\\\))+", string, re.IGNORECASE | re.MULTILINE)
 		if fname:
 			for word in fname:
 				word = filter(None, word[0])
