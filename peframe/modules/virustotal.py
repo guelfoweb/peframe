@@ -23,7 +23,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ----------------------------------------------------------------------
 
-import simplejson
+import json
 import urllib
 import urllib2
 
@@ -41,7 +41,7 @@ def get(tosearch, strings_match):
 	apikey = strings_match['virustotal']['apikey']
 	if apikey:
 		response = vtcheck(apikey, tosearch)
-		response = simplejson.loads(response)
+		response = json.loads(response)
 		if response['response_code'] == 1:
 			scan_date = response['scan_date']
 			permalink = response['permalink']
