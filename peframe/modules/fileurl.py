@@ -103,11 +103,14 @@ def get(filename, strings_match):
 	# Strings analysis for fuzzing
 	array_tmp = []
 	for string in strings_list:
-		for key, value in fuzzing_list:
-			fuzz_match = re.findall(value, string, re.IGNORECASE | re.MULTILINE)
-			if fuzz_match and string.lower() not in array_tmp:
-				fuzzing_dict[key].append(string)
-				array_tmp.append(string.lower())
+		# Workaround: If analyzed a very long base64 string to
+		# obfuscate a malware the cycle could be very long.
+		if len(string) < 256:
+			for key, value in fuzzing_list:
+				fuzz_match = re.findall(value, string, re.IGNORECASE | re.MULTILINE)
+				if fuzz_match and string.lower() not in array_tmp:
+					fuzzing_dict[key].append(string)
+					array_tmp.append(string.lower())
 
 	# Remove empty key filetype
 	for key, value in filetype_dict.items():
