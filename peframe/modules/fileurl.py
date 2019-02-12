@@ -54,25 +54,27 @@ def get(filename, strings_match):
 
 	# Strings analysis
 	for string in strings_list:
-		# URL list
-		urllist = re.findall(r'((smb|srm|ssh|ftps?|file|https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', string, re.MULTILINE)
-		if urllist:
-			for url in urllist:
-				url_list.append(url[0])
+		# The maximum length of a URL is 2000 characters, needless to analyze longer strings.
+		if len(string) < 2000:
+			# URL list
+			urllist = re.findall(r'((smb|srm|ssh|ftps?|file|https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', string, re.MULTILINE)
+			if urllist:
+				for url in urllist:
+					url_list.append(url[0])
 
-		# IP list
-		iplist = re.findall(r'[0-9]+(?:\.[0-9]+){3}', string, re.MULTILINE)
-		if iplist:
-			for ip in iplist:
-				if valid_ip(str(ip)) and not re.findall(r'[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}\.0', str(ip)):
-					ip_list.append(str(ip))
+			# IP list
+			iplist = re.findall(r'[0-9]+(?:\.[0-9]+){3}', string, re.MULTILINE)
+			if iplist:
+				for ip in iplist:
+					if valid_ip(str(ip)) and not re.findall(r'[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}\.0', str(ip)):
+						ip_list.append(str(ip))
 
-		# FILE list
-		fname = re.findall("(.+(\.([a-z]{2,3}$)|\/.+\/|\\\.+\\\))+", string, re.IGNORECASE | re.MULTILINE)
-		if fname:
-			for word in fname:
-				word = filter(None, word[0])
-				file_list.append(word)
+			# FILE list
+			fname = re.findall("(.+(\.([a-z]{2,3}$)|\/.+\/|\\\.+\\\))+", string, re.IGNORECASE | re.MULTILINE)
+			if fname:
+				for word in fname:
+					word = filter(None, word[0])
+					file_list.append(word)
 
 	# Purge list
 	ip_list = filter(None, list(set([item for item in ip_list])))
