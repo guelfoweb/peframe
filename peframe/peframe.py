@@ -302,7 +302,7 @@ def stdoutput(get_info_from):
 
 				if item == 'packer_info':
 					print
-					print "Paker info"
+					print "Packer info"
 					print "-"*60
 					for packer in output['pe_info'][item]:
 						print packer
