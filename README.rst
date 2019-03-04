@@ -17,7 +17,7 @@ Usage
     
     python3 peframe-cli.py -s <filename>  Strings output
     
-You can edit `config-peframe.json <https://github.com/guelfoweb/peframe/blob/master/peframe/signatures/stringsmatch.json>`_ file in "config" folder to configure virustotal API key.
+You can edit `config-peframe.json <https://github.com/guelfoweb/peframe/blob/master/config/config-peframe.json>`_ file in "config" folder to configure virustotal API key.
 
 
 
