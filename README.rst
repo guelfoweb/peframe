@@ -52,6 +52,20 @@ Install
 
    bash install.sh
 
+How to work
+-----------
+
+**MS Office (macro) document analysis**
+
+.. image:: https://asciinema.org/a/mbLd5dChz9iI8eOY15fC2423X.svg
+   :target: https://asciinema.org/a/mbLd5dChz9iI8eOY15fC2423X?autoplay=1
+
+
+**PE file analysis**
+
+.. image:: https://asciinema.org/a/P6ANqp0bHV0nFsuJDuqD7WQD7.svg
+   :target: https://asciinema.org/a/P6ANqp0bHV0nFsuJDuqD7WQD7?autoplay=1
+
 
 Talk about...
 -------------
