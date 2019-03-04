@@ -27,17 +27,16 @@ Install
 
 .. code-block::
 
-    Python >= 3.6.6
+    python >= 3.6.6
+    pip3
     libssl-dev
     swig
 
-**How to**
-
-Install using PyPI:
+**Install using PyPI**
 
    pip3 install -r requirements.txt
 
-Install on Debian/Ubuntu:
+**Install on Debian/Ubuntu**
 
    bash install.sh
 
