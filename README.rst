@@ -20,6 +20,8 @@ Usage
 You can edit `config-peframe.json <https://github.com/guelfoweb/peframe/blob/master/peframe/signatures/stringsmatch.json>`_ file in "config" folder to configure virustotal API key.
 
 
+
+
 Install
 -------
 
@@ -32,11 +34,21 @@ Install
     libssl-dev
     swig
 
+**Download**
+
+.. code-block::
+
+   git clone https://github.com/guelfoweb/peframe.git
+
 **Install using PyPI**
+
+.. code-block::
 
    pip3 install -r requirements.txt
 
 **Install on Debian/Ubuntu**
+
+.. code-block::
 
    bash install.sh
 
