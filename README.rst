@@ -1,28 +1,23 @@
 =============
-PEframe 5.0.1
+PEframe 6.0.0
 =============
 
-PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, and much more information about the suspicious files.
-
-Documentation will be available soon.
+PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, macro and much more information about the suspicious files.
 
 Usage
 -----
 
 .. code-block:: bash
 
-    $ peframe <filename>            Short output analysis
+    python3 peframe-cli.py <filename>     Short output analysis
 
-    $ peframe --json <filename>     Full output analysis JSON format
+    python3 peframe-cli.py -i <filename>  Interactive mode
+
+    python3 peframe-cli.py -j <filename>  Full output analysis JSON format
     
-    $ peframe --strings <filename>  Strings output
+    python3 peframe-cli.py -s <filename>  Strings output
     
-You can edit `stringsmatch.json <https://github.com/guelfoweb/peframe/blob/master/peframe/signatures/stringsmatch.json>`_ file to configure your fuzzer and virustotal apikey.
-
-Output example
---------------
-
-`Short data example <http://pastebin.com/hrKNtLMN>`_ | `Full data (JSON) example <http://pastebin.com/tpmdsibd/>`_
+You can edit `config-peframe.json <https://github.com/guelfoweb/peframe/blob/master/peframe/signatures/stringsmatch.json>`_ file in "config" folder to configure virustotal API key.
 
 
 Install
@@ -32,29 +27,20 @@ Install
 
 .. code-block::
 
-    Python 2.7.x
+    Python >= 3.6.6
+    libssl-dev
+    swig
 
 **How to**
 
-To install from PyPI:
+Install using PyPI:
 
- .. code-block:: bash
+   pip3 install -r requirements.txt
 
-   # pip install https://github.com/guelfoweb/peframe/archive/master.zip
+Install on Debian/Ubuntu:
 
-To install from source:
+   bash install.sh
 
- .. code-block:: bash
-
-   $ git clone https://github.com/guelfoweb/peframe.git
-
-   $ cd peframe
-
-   # python setup.py install
-
-**Note**
-
-For Windows environment, you need to follow the instructions here: https://github.com/ahupp/python-magic#dependencies (Thanks to `Biagio <https://www.linkedin.com/in/biagiotagliaferro/>`_)
 
 Talk about...
 -------------
@@ -66,7 +52,7 @@ Talk about...
   * `Automated Static and Dynamic Analysis of Malware <http://www.cyberdefensemagazine.com/newsletters/august-2013/index.html#p=26>`_ *(Cyber Defence Magazine, Andrew Browne, Director Malware Lab Lavasoft).*
   * `Suspicious File Analysis with PEframe <https://eforensicsmag.com/download/malware-analysis/>`_ *(eForensics Magazine, Chintan Gurjar)*
   * `CERT FR Security Bulletin <https://www.cert.ssi.gouv.fr/actualite/CERTFR-2014-ACT-030/>`_ *(PEframe was mentioned in the security bulletin CERTFR-2014-ACT-030)*
-  * `Infosec CERT-PA Malware Analysis <https://infosec.cert-pa.it/analyze/submission.html>`_ *(PEframe is used in the malware analysis engine of Infosec project, developed by Davide Baglieri)*
+  * `Infosec CERT-PA Malware Analysis <https://infosec.cert-pa.it/analyze/submission.html>`_ *(PEframe is used in the malware analysis engine of Infosec project)*
 
 Other
 -----
