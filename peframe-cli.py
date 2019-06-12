@@ -268,7 +268,7 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument("file", help="sample to analyze")
-parser.add_argument("-v", "--version", action='version', version='%(prog)s 6.0')
+parser.add_argument("-v", "--version", action='version', version='%(prog)s 6.0.1')
 parser.add_argument("-i", "--interactive", help="join in interactive mode", action='store_true', required=False)
 parser.add_argument("-x", "--xorsearch", help="search xored string", required=False)
 parser.add_argument("-j", "--json", help="export short report in JSON", action='store_true', required=False)
