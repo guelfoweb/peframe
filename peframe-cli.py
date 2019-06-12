@@ -12,12 +12,13 @@ import argparse
 from argparse import RawTextHelpFormatter
 from modules import autocomplete
 from modules import virustotal
+from modules import features
 
 # TODO
 # [ ] get_data_by_offset
 # [ ] setuptools
 
-__version__ = '6.0'
+__version__ = '6.0.1'
 
 def header(title):
 	print ('\n')
@@ -269,6 +270,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument("file", help="sample to analyze")
 parser.add_argument("-v", "--version", action='version', version='%(prog)s 6.0')
 parser.add_argument("-i", "--interactive", help="join in interactive mode", action='store_true', required=False)
+parser.add_argument("-x", "--xorsearch", help="search xored string", required=False)
 parser.add_argument("-j", "--json", help="export short report in JSON", action='store_true', required=False)
 parser.add_argument("-s", "--strings", help="export all strings", action='store_true', required=False)
 
@@ -276,6 +278,10 @@ args = parser.parse_args()
 
 filename = args.file
 result = peframe.analyze(filename)
+
+if args.xorsearch:
+	print (json.dumps(features.get_xor(filename, search_string=str.encode(args.xorsearch)), sort_keys=True, indent=4))
+	sys.exit()
 
 if args.json:
 	print (json.dumps(result, sort_keys=True, indent=4))
@@ -332,10 +338,9 @@ if result['peinfo']:
 			print (item.replace('_', ' '))
 
 	if result['peinfo']['features']['xor']:
-		if 'Xor' in result['peinfo']['behavior']:
-			header('Xor')
-			for k, v in result['peinfo']['features']['xor'].items():
-				print (str(k).ljust(align, ' '), v)
+		header('Xor')
+		for k, v in result['peinfo']['features']['xor'].items():
+			print (str(k).ljust(align, ' '), v)
 
 	if result['peinfo']['features']['mutex']:
 		header('Mutex Api')

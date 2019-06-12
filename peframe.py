@@ -22,7 +22,7 @@ from modules import fileurl
 from modules import macro
 
 def version():
-	return "6.0"
+	return "6.0.1"
 
 def get_datetime_now():
 	return datetime.now()

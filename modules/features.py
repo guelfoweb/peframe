@@ -20,11 +20,18 @@ def xor_delta(s, key_len = 1):
 	""" return the delta as a string """
 	return delta.tostring()[:-key_len]
  
-def get_xor(filename):
+def get_xor(filename, search_string=False):
+	xorsearch_custom = False
 	check = {}
+	offset_list = []
 	search_file = open(filename, "rb").read()
 	key_lengths=[1,2,4,8]
-	search_string = b"This program cannot be run in DOS mode."
+	if not search_string:
+		search_string = b"This program cannot be run in DOS mode."
+	else:
+		str(search_string)
+		xorsearch_custom = True
+	is_xored = False
 	 
 	for l in key_lengths:
 		key_delta = xor_delta(search_string, l)
@@ -34,17 +41,28 @@ def get_xor(filename):
 		while(True):
 			offset += 1
 			offset = doc_delta.find(key_delta, offset)
-			if(offset > 0):
-				# key: offset
-				check.update({l: hex(offset)})
+
+			if(offset > 0) and offset not in offset_list:
+				offset_list.append(offset)
+				f = open(filename, 'rb')
+				f.seek(offset, 0)
+				data = f.read(39)
+				if search_string not in data:
+					is_xored = True
+
+				try:
+					data = str(data.decode("utf-8"))
+				except:
+					data = str(data)
+
+				check.update({hex(offset): data})
 			else:
 				break
 
-	detect = [item for item in check.items() if item[1] == 78]
-
-	if detect or check == {}:
+	if is_xored or xorsearch_custom:
+		return check
+	else:
 		return {}
-	return check
 
 import re
 def get_antivm(filename):

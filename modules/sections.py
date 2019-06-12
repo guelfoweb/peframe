@@ -11,8 +11,13 @@ def isSectionExecutable(section):
 def get_result(pe):
 	array = []
 	for section in pe.sections:
+		try:
+			section_name = str(section.Name, 'utf-8').encode('ascii', errors='ignore').strip().decode('ascii')
+		except:
+			section_name = str(section.Name, 'ISO-8859-1').encode('ascii', errors='ignore').strip().decode('ascii')
 
-		section_name = str(section.Name.decode('ascii')).replace('\u0000', '')
+		section_name = section_name.replace('\u0000', '')
+
 		if section_name == '':
 			section_name = '.noname'
 
