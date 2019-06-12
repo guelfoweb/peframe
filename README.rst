@@ -9,13 +9,15 @@ Usage
 
 .. code-block:: bash
 
-    python3 peframe-cli.py <filename>     Short output analysis
+    python3 peframe-cli.py <filename>            Short output analysis
 
-    python3 peframe-cli.py -i <filename>  Interactive mode
+    python3 peframe-cli.py -i <filename>         Interactive mode
 
-    python3 peframe-cli.py -j <filename>  Full output analysis JSON format
+    python3 peframe-cli.py -j <filename>         Full output analysis JSON format
     
-    python3 peframe-cli.py -s <filename>  Strings output
+    python3 peframe-cli.py -x STRING <filename>  Search xored string
+    
+    python3 peframe-cli.py -s <filename>         Strings output
     
 You can edit `config-peframe.json <https://github.com/guelfoweb/peframe/blob/master/config/config-peframe.json>`_ file in "config" folder to configure virustotal API key.
 
