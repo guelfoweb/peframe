@@ -6,19 +6,29 @@
 import os
 import sys
 import json
-import peframe
 import readline
 import argparse
 from argparse import RawTextHelpFormatter
-from modules import autocomplete
-from modules import virustotal
-from modules import features
+
+portable = False
+for path in sys.path:
+	if os.sep+'peframe'+os.sep+'peframe' in path:
+		portable = True
+if portable:
+	import peframe
+	from modules import autocomplete
+	from modules import virustotal
+	from modules import features
+else:
+	from peframe import peframe
+	from peframe.modules import autocomplete
+	from peframe.modules import virustotal
+	from peframe.modules import features
 
 # TODO
 # [ ] get_data_by_offset
-# [ ] setuptools
 
-__version__ = '6.0.1'
+__version__ = peframe.version()
 
 def header(title):
 	print ('\n')
@@ -166,7 +176,6 @@ def show_config():
 	intro = 'Path(s) to configuration file(s):'
 	message = '\napi_config: '+api_config+'\nstring_match: '+string_match+'\nyara_plugins: '+yara_plugins
 	return message
-	#sys.exit()
 
 def get_info():
 	header('File Information (time: ' + str(result['time']) + ')')
@@ -268,7 +277,7 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument("file", help="sample to analyze")
-parser.add_argument("-v", "--version", action='version', version='%(prog)s 6.0.1')
+parser.add_argument("-v", "--version", action='version', version='%(prog)s '+str(__version__))
 parser.add_argument("-i", "--interactive", help="join in interactive mode", action='store_true', required=False)
 parser.add_argument("-x", "--xorsearch", help="search xored string", required=False)
 parser.add_argument("-j", "--json", help="export short report in JSON", action='store_true', required=False)
@@ -416,3 +425,5 @@ if result['strings']:
 		header('Fuzzing')
 		for k, v in result['strings']['fuzzing'].items():
 			print (k)
+
+sys.exit()

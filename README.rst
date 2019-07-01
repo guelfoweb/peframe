@@ -1,27 +1,8 @@
 =============
-PEframe 6.0.1
+PEframe 6.0.2
 =============
 
 PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, macro and much more information about the suspicious files.
-
-Usage
------
-
-.. code-block:: bash
-
-    python3 peframe-cli.py <filename>            Short output analysis
-
-    python3 peframe-cli.py -i <filename>         Interactive mode
-
-    python3 peframe-cli.py -j <filename>         Full output analysis JSON format
-    
-    python3 peframe-cli.py -x STRING <filename>  Search xored string
-    
-    python3 peframe-cli.py -s <filename>         Strings output
-    
-You can edit `config-peframe.json <https://github.com/guelfoweb/peframe/blob/master/config/config-peframe.json>`_ file in "config" folder to configure virustotal API key.
-
-
 
 
 Install
@@ -42,17 +23,30 @@ Install
 
    git clone https://github.com/guelfoweb/peframe.git
 
-**Install using PyPI**
+**Install**
 
 .. code-block::
 
-   pip3 install -r requirements.txt
+   python3 setup.py install
 
-**Install on Debian/Ubuntu**
 
-.. code-block::
+Usage
+-----
 
-   bash install.sh
+.. code-block:: bash
+
+    peframe <filename>            Short output analysis
+
+    peframe -i <filename>         Interactive mode
+
+    peframe -j <filename>         Full output analysis JSON format
+    
+    peframe -x STRING <filename>  Search xored string
+    
+    peframe -s <filename>         Strings output
+    
+You can edit "config-peframe.json" file in "config" folder to configure virustotal API key. After installation you can use "peframe -h" to find api_config path.
+
 
 How to work
 -----------

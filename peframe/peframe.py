@@ -5,24 +5,42 @@
 
 import os
 import re
+import sys
 import json
 import magic
 import pefile
 import hashlib
 from datetime import datetime
 
-from modules import directories
-from modules import features
-from modules import apialert
-from modules import yara_check
-from modules import meta
-from modules import virustotal
-from modules import sections
-from modules import fileurl
-from modules import macro
+portable = False
+for path in sys.path:
+	if os.sep+'peframe'+os.sep+'peframe' in path:
+		portable = True
+if portable:
+	from modules import directories
+	from modules import features
+	from modules import apialert
+	from modules import yara_check
+	from modules import meta
+	from modules import virustotal
+	from modules import sections
+	from modules import fileurl
+	from modules import macro
+else:
+	from peframe.modules import directories
+	from peframe.modules import features
+	from peframe.modules import apialert
+	from peframe.modules import yara_check
+	from peframe.modules import meta
+	from peframe.modules import virustotal
+	from peframe.modules import sections
+	from peframe.modules import fileurl
+	from peframe.modules import macro
+
+
 
 def version():
-	return "6.0.1"
+	return "6.0.2"
 
 def get_datetime_now():
 	return datetime.now()
