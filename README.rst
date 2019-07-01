@@ -27,7 +27,13 @@ Install
 
 .. code-block::
 
-   python3 setup.py install
+   cd peframe
+
+*as root (sudo)*
+
+.. code-block::
+
+    python3 setup.py install
 
 
 Usage
