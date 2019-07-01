@@ -57,13 +57,13 @@ You can edit "config-peframe.json" file in "config" folder to configure virustot
 How to work
 -----------
 
-**MS Office (macro) document analysis**
+**MS Office (macro) document analysis with PEframe 6.0.1**
 
 .. image:: https://asciinema.org/a/mbLd5dChz9iI8eOY15fC2423X.svg
    :target: https://asciinema.org/a/mbLd5dChz9iI8eOY15fC2423X?autoplay=1
 
 
-**PE file analysis**
+**PE file analysis with PEframe 6.0.1**
 
 .. image:: https://asciinema.org/a/P6ANqp0bHV0nFsuJDuqD7WQD7.svg
    :target: https://asciinema.org/a/P6ANqp0bHV0nFsuJDuqD7WQD7?autoplay=1
