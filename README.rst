@@ -8,7 +8,30 @@ PEframe is a open source tool to perform static analysis on `Portable Executable
 Install
 -------
 
+**Download**
+
+.. code-block::
+
+   sudo apt install git
+   git clone https://github.com/guelfoweb/peframe.git
+   cd peframe
+   
+**Installation script for Ubuntu**
+
+.. code-block::
+
+   sudo bash install.sh
+
+**Installation (prerequisites required)**
+
+.. code-block::
+
+    sudo python3 setup.py install
+
+
 **Prerequisites**
+
+The following prerequisites are required to be installed on your system before you can install and use peframe.
 
 .. code-block::
 
@@ -16,42 +39,24 @@ Install
     pyton3-pip
     libssl-dev
     swig
-    git
-
-**Download**
-
-.. code-block::
-
-   git clone https://github.com/guelfoweb/peframe.git
-
-**Install**
-
-.. code-block::
-
-   cd peframe
-
-*as root (sudo)*
-
-.. code-block::
-
-    python3 setup.py install
 
 
 Usage
 -----
 
-.. code-block:: bash
+peframe -h
 
-    peframe <filename>            Short output analysis
+.. code-block::
 
-    peframe -i <filename>         Interactive mode
+    peframe filename            Short output analysis
+    peframe -i filename         Interactive mode
+    peframe -j filename         Full output analysis JSON format
+    peframe -x STRING filename  Search xored string
+    peframe -s filename         Strings output
+    
 
-    peframe -j <filename>         Full output analysis JSON format
-    
-    peframe -x STRING <filename>  Search xored string
-    
-    peframe -s <filename>         Strings output
-    
+**Note**
+
 You can edit "config-peframe.json" file in "config" folder to configure virustotal API key. After installation you can use "peframe -h" to find api_config path.
 
 
