@@ -13,9 +13,10 @@ Install
 .. code-block::
 
     python >= 3.6.6
-    pip3
+    pyton3-pip
     libssl-dev
     swig
+    git
 
 **Download**
 
