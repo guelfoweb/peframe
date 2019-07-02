@@ -17,11 +17,11 @@ echo -e "Tested on $environment_test\n"
 
 read -rsp $'Press enter to continue...\n'
 
-sudo apt -y install python3
-sudo apt -y install python3-dev
-sudo apt -y install python3-pip
-sudo apt -y install libssl-dev
-sudo apt -y install swig
+apt -y install python3
+apt -y install python3-dev
+apt -y install python3-pip
+apt -y install libssl-dev
+apt -y install swig
 
 echo -e "\nInstalling requirements via setup.py...\n"
-sudo python3 setup.py install
+python3 setup.py install
