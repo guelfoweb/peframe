@@ -9,16 +9,12 @@ from setuptools import setup
 from codecs import open  # To use a consistent encoding
 from os import path
 
-from peframe import peframe
-
-#here = path.abspath(path.dirname(__file__))
-
 with open('requirements.txt') as f:
 	required = f.read().splitlines()
 
 setup(
 	name='peframe',
-	version=peframe.version(),
+	version='6.0.2',
 
 	description='PEframe is a open source tool to perform static analysis on Portable Executable malware and malicious MS Office documents.',
 	url='https://github.com/guelfoweb/peframe',
