@@ -9,7 +9,7 @@ if [[ $(id -u) -ne 0 ]]; then
 	exit 1
 fi
 
-peframe_version="6.0.2"
+peframe_version="6.0.3"
 environment_test="Ubuntu Desktop 18.04.2 64bit"
 
 echo "Installation script peframe $peframe_version"
