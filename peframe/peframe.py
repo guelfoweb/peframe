@@ -40,7 +40,7 @@ else:
 
 
 def version():
-	return "6.0.2"
+	return "6.0.3"
 
 def get_datetime_now():
 	return datetime.now()
