@@ -1,8 +1,8 @@
-=============
-PEframe 6.0.2
-=============
+=======
+peframe
+=======
 
-PEframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, macro and much more information about the suspicious files.
+peframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, macro and much more information about the suspicious files.
 
 
 Install
@@ -63,13 +63,13 @@ You can edit "config-peframe.json" file in "config" folder to configure virustot
 How to work
 -----------
 
-**MS Office (macro) document analysis with PEframe 6.0.1**
+**MS Office (macro) document analysis with peframe 6.0.1**
 
 .. image:: https://asciinema.org/a/mbLd5dChz9iI8eOY15fC2423X.svg
    :target: https://asciinema.org/a/mbLd5dChz9iI8eOY15fC2423X?autoplay=1
 
 
-**PE file analysis with PEframe 6.0.1**
+**PE file analysis with peframe 6.0.1**
 
 .. image:: https://asciinema.org/a/P6ANqp0bHV0nFsuJDuqD7WQD7.svg
    :target: https://asciinema.org/a/P6ANqp0bHV0nFsuJDuqD7WQD7?autoplay=1
