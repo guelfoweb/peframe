@@ -14,9 +14,9 @@ with open('requirements.txt') as f:
 
 setup(
 	name='peframe',
-	version='6.0.2',
+	version='6.0.3',
 
-	description='PEframe is a open source tool to perform static analysis on Portable Executable malware and malicious MS Office documents.',
+	description='peframe is a open source tool to perform static analysis on Portable Executable malware and malicious MS Office documents.',
 	url='https://github.com/guelfoweb/peframe',
 
 	author='Gianni \'guelfoweb\' Amato',
