@@ -10,8 +10,11 @@ def yara_match_from_file(fileyara, filename):
 	rules = yara.compile(fileyara)
 
 	# serialize matches
-	for match in rules.match(filename):
-		matches.append(str(match))
+	try:
+		for match in rules.match(filename):
+			matches.append(str(match))
+	except: # fix yara.Error: internal error: 30
+		pass
 
 	return matches
 
