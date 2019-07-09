@@ -24,6 +24,4 @@ pkg install -y openssl-dev
 pkg install -y libffi-dev
 pkg install -y sox
 
-git clone https://github.com/guelfoweb/peframe.git
-cd peframe
 python3 setup.py install
