@@ -42,7 +42,7 @@ def get_export(pe):
 		for exp in pe.DIRECTORY_ENTRY_EXPORT.symbols:
 			# No dll
 			address = pe.OPTIONAL_HEADER.ImageBase + exp.address
-			function = exp.name
+			function = exp.name.decode('ascii')
 			array.append({"offset": address, "function": function})
 	except:
 		pass
