@@ -53,6 +53,7 @@ peframe -h
     peframe -j filename         Full output analysis JSON format
     peframe -x STRING filename  Search xored string
     peframe -s filename         Strings output
+    peframe -y                  Generate Yara ruleset
     
 
 **Note**
