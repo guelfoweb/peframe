@@ -103,7 +103,7 @@ def files_to_edit():
 	}
 	return path
 
-def analyze(filename):
+def analyze(filename, yaratest):
 	if not isfile(filename):
 		exit("File not found")
 
@@ -128,7 +128,7 @@ def analyze(filename):
 
 	fileinfo.update({"docinfo": docinfo})
 	fileinfo.update({"peinfo": peinfo})
-
+	
 	if ispe(filename):
 		pe = pefile.PE(filename)
 		peinfo.update({
@@ -145,11 +145,17 @@ def analyze(filename):
 			"metadata": meta.get(pe)
 			})
 		fileinfo.update({"peinfo": peinfo})
-		fileinfo.update({"yara_plugins": yara_check.yara_match_from_folder(path_to_file('pe', 'signatures/yara_plugins'), filename, ['antidebug_antivm.yar'])})
+		if yaratest:
+			fileinfo.update({"yara_plugins": yara_check.yara_match_from_folder(path_to_file('pe', 'signatures/yara_plugins'), filename, ['antidebug_antivm.yar'])})
+		else:
+			fileinfo.update({"yara_plugins": None})
 	else:
 		fileinfo.update({"docinfo": macro.get_result(filename)})
-		fileinfo.update({"yara_plugins": yara_check.yara_match_from_folder(path_to_file('doc', 'signatures/yara_plugins'), filename)})
-
+		if yaratest:
+			fileinfo.update({"yara_plugins": yara_check.yara_match_from_folder(path_to_file('doc', 'signatures/yara_plugins'), filename)})
+		else:
+			fileinfo.update({"yara_plugins": None})
+		
 	dt_end = get_datetime_now()
 
 	fileinfo.update({"time": str(dt_end - dt_start)})
