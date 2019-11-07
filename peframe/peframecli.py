@@ -282,11 +282,17 @@ parser.add_argument("-i", "--interactive", help="join in interactive mode", acti
 parser.add_argument("-x", "--xorsearch", help="search xored string", required=False)
 parser.add_argument("-j", "--json", help="export short report in JSON", action='store_true', required=False)
 parser.add_argument("-s", "--strings", help="export all strings", action='store_true', required=False)
+parser.add_argument("-y", "--yara", help="generate yara ruleset", action='store_true', required=False)
 
 args = parser.parse_args()
 
 filename = args.file
-result = peframe.analyze(filename)
+
+if args.yara:
+	result = peframe.analyze(filename, True)
+else:
+	result = peframe.analyze(filename, False)
+	
 
 if args.xorsearch:
 	print (json.dumps(features.get_xor(filename, search_string=str.encode(args.xorsearch)), sort_keys=True, indent=4))
