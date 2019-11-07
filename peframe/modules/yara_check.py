@@ -30,7 +30,7 @@ def yara_match_from_folder(folder_yara, filename, exclude=[]):
 					rules = yara.compile(path_to_file_yara)
 					
 					# serialize matches
-					for match in rules.match(filename):
+					for match in rules.match(filename, timeout=60):
 						matches.append({f: str(match)})
 				except:
 					pass
