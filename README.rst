@@ -77,9 +77,9 @@ How to work
 
 Talk about...
 -------------
-
-
-  * `Multinomial malware classification, research of the Department of Information Security and Communication Technology (NTNU) <https://www.sciencedirect.com/science/article/pii/S1742287618301956>`_ *(SergiiBanin and Geir Olav Dyrkolbotn, Norway)*
+  * `Integration of Static and Dynamic Analysis for Malware Family Classification with Composite Neural Network <https://www.groundai.com/project/integration-of-static-and-dynamic-analysis-for-malware-family-classification-with-composite-neural-network/>`_ *(Yao Saint, Yen Institute of Information Science, Academia Sinica, Taiwan)*
+  * `Machine Learning Aided Static Malware Analysis: A Survey and Tutorial <https://www.researchgate.net/publication/324702503_Machine_Learning_Aided_Static_Malware_Analysis_A_Survey_and_Tutorial>`_ *(Sergii Banin, Andrii Shalaginov, Ali Dehghantanha, Katrin Franke, Norway)*
+  * `Multinomial malware classification, research of the Department of Information Security and Communication Technology (NTNU) <https://www.sciencedirect.com/science/article/pii/S1742287618301956>`_ *(Sergii Banin and Geir Olav Dyrkolbotn, Norway)*
   * `SANS DFIR Poster 2016 <http://digital-forensics.sans.org/media/Poster_SIFT_REMnux_2016_FINAL.pdf>`_ *(PEframe was listed in the REMnux toolkits)*
   * `Tools for Analyzing Static Properties of Suspicious Files on Windows <http://digital-forensics.sans.org/blog/2014/03/04/tools-for-analyzing-static-properties-of-suspicious-files-on-windows>`_ *(SANS Digital Forensics and Incident Response, Lenny Zeltser).*
   * `Automated Static and Dynamic Analysis of Malware <http://www.cyberdefensemagazine.com/newsletters/august-2013/index.html#p=26>`_ *(Cyber Defence Magazine, Andrew Browne, Director Malware Lab Lavasoft).*
