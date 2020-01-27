@@ -29,6 +29,7 @@ else:
 # [ ] get_data_by_offset
 
 __version__ = peframe.version()
+ALIGN = 16
 
 
 def header(title):
@@ -38,7 +39,7 @@ def header(title):
     print(''.ljust(80, '-'))
 
 
-def interactive_mode():
+def interactive_mode(result, cmd_list, cmd_list_select):
     header('Interactive mode (press TAB to show commands)')
     help_list = ['?', 'h', 'help', 'ls', 'dir']
     drop_list = ['q!', 'exit', 'quit', 'bye']
@@ -50,11 +51,11 @@ def interactive_mode():
             print(json.dumps(cmd_list, sort_keys=True, indent=4))
         elif user_input in drop_list:
             print('goodbye!\n')
-            break
+            return 0
 
         # info
         elif user_input == 'info':
-            get_info()
+            get_info(result)
             print('\n')
         elif user_input == 'yara_plugins':
             yara_plugins_list = []
@@ -213,15 +214,17 @@ def show_config():
     return message
 
 
-def get_info():
+def get_info(result):
+    cmd_list = ['info', 'exit', 'virustotal']
+    cmd_list_select = {}
     header('File Information (time: ' + str(result['time']) + ')')
-    print("filename".ljust(align, ' '), os.path.basename(result['filename']))
-    print("filetype".ljust(align, ' '), result['filetype'][0:63])
-    print("filesize".ljust(align, ' '), result['filesize'])
-    print("hash sha256".ljust(align, ' '), result['hashes']['sha256'])
+    print("filename".ljust(ALIGN, ' '), os.path.basename(result['filename']))
+    print("filetype".ljust(ALIGN, ' '), result['filetype'][0:63])
+    print("filesize".ljust(ALIGN, ' '), result['filesize'])
+    print("hash sha256".ljust(ALIGN, ' '), result['hashes']['sha256'])
     cmd_list.append('hashes')
 
-    print("virustotal".ljust(align, ' '), str(
+    print("virustotal".ljust(ALIGN, ' '), str(
         result['virustotal']['positives']) + '/' + str(result['virustotal']['total']))
     cmd_list_select.update(
         {"virustotal": ['permalink', 'antivirus', 'scan_date']})
@@ -232,12 +235,12 @@ def get_info():
             imagebase = hex(result['peinfo']['imagebase'])
         else:
             imagebase = hex(result['peinfo']['imagebase'])+" *"
-        print("imagebase".ljust(align, ' '), imagebase)
-        print("entrypoint".ljust(align, ' '),
+        print("imagebase".ljust(ALIGN, ' '), imagebase)
+        print("entrypoint".ljust(ALIGN, ' '),
               hex(result['peinfo']['entrypoint']))
-        print("imphash".ljust(align, ' '), result['peinfo']['imphash'])
-        print("datetime".ljust(align, ' '), result['peinfo']['timestamp'])
-        print("dll".ljust(align, ' '), result['peinfo']['dll'])
+        print("imphash".ljust(ALIGN, ' '), result['peinfo']['imphash'])
+        print("datetime".ljust(ALIGN, ' '), result['peinfo']['timestamp'])
+        print("dll".ljust(ALIGN, ' '), result['peinfo']['dll'])
 
         # directories
         if result['peinfo']['directories']:
@@ -253,7 +256,7 @@ def get_info():
                         except:
                             pass
             if directories_list:
-                print("directories".ljust(align, ' '),
+                print("directories".ljust(ALIGN, ' '),
                       ', '.join(directories_list_temp))
                 cmd_list.append('directories')
                 cmd_list_select.update({"directories": directories_list})
@@ -268,7 +271,7 @@ def get_info():
                     section_list_temp.remove(items['section_name'])
                     section_list_temp.append(items['section_name'] + ' *')
             if section_list:
-                print("sections".ljust(align, ' '),
+                print("sections".ljust(ALIGN, ' '),
                       ', '.join(section_list_temp))
                 cmd_list.append('sections')
                 cmd_list_select.update({"sections": section_list})
@@ -278,7 +281,7 @@ def get_info():
             features_list = [k for k, v in result['peinfo']
                              ['features'].items() if v]
             if features_list:
-                print("features".ljust(align, ' '), ', '.join(features_list))
+                print("features".ljust(ALIGN, ' '), ', '.join(features_list))
                 cmd_list.append('features')
                 cmd_list_select.update({"features": features_list})
 
@@ -303,7 +306,7 @@ def get_info():
     # docinfo
     if result['docinfo']:
         if result['docinfo']['macro']:
-            print("macro".ljust(align, ' '), True)
+            print("macro".ljust(ALIGN, ' '), True)
             cmd_list.append('macro')
         if result['docinfo']['behavior']:
             cmd_list.append('behavior')
@@ -313,168 +316,165 @@ def get_info():
     if result['yara_plugins']:
         cmd_list.append('yara_plugins')
 
-
-parser = argparse.ArgumentParser(
-    prog='peframe',
-    description='Tool for static malware analysis.',
-    epilog=show_config(),
-    formatter_class=RawTextHelpFormatter
-)
-
-parser.add_argument("file", help="sample to analyze")
-parser.add_argument("-v", "--version", action='version',
-                    version='%(prog)s '+str(__version__))
-parser.add_argument("-i", "--interactive", help="join in interactive mode",
-                    action='store_true', required=False)
-parser.add_argument("-x", "--xorsearch",
-                    help="search xored string", required=False)
-parser.add_argument("-j", "--json", help="export short report in JSON",
-                    action='store_true', required=False)
-parser.add_argument("-s", "--strings", help="export all strings",
-                    action='store_true', required=False)
-
-args = parser.parse_args()
-
-filename = args.file
-result = peframe.analyze(filename)
-
-if args.xorsearch:
-    print(json.dumps(features.get_xor(filename, search_string=str.encode(
-        args.xorsearch)), sort_keys=True, indent=4))
-    sys.exit()
-
-if args.json:
-    print(json.dumps(result, sort_keys=True, indent=4))
-    sys.exit()
-
-if args.strings:
-    print('\n'.join(result['strings']['dump']))
-    sys.exit()
-
-align = 16
-cmd_list = ['info', 'strings', 'exit', 'virustotal']
-cmd_list_select = {}
-
-if args.interactive:
-    json.dumps(get_info(), sort_keys=True, indent=4)
-    interactive_mode()
-    sys.exit()
+    return cmd_list, cmd_list_select
 
 
-get_info()
+def main():
+    parser = argparse.ArgumentParser(
+        prog='peframe',
+        description='Tool for static malware analysis.',
+        epilog=show_config(),
+        formatter_class=RawTextHelpFormatter
+    )
 
-if result['yara_plugins']:
-    header('Yara Plugins')
-    for item in result['yara_plugins']:
-        for k, v in item.items():
-            print(v.replace('_', ' '))
+    parser.add_argument("file", help="sample to analyze")
+    parser.add_argument("-v", "--version", action='version',
+                        version='%(prog)s '+str(__version__))
+    parser.add_argument("-i", "--interactive", help="join in interactive mode",
+                        action='store_true', required=False)
+    parser.add_argument("-x", "--xorsearch",
+                        help="search xored string", required=False)
+    parser.add_argument("-j", "--json", help="export short report in JSON",
+                        action='store_true', required=False)
+    parser.add_argument("-s", "--strings", help="export all strings",
+                        action='store_true', required=False)
+
+    args = parser.parse_args()
+
+    filename = args.file
+    result = peframe.analyze(filename)
+
+    if args.xorsearch:
+        print(json.dumps(features.get_xor(filename, search_string=str.encode(
+            args.xorsearch)), sort_keys=True, indent=4))
+        return 1
+
+    if args.json:
+        print(json.dumps(result, sort_keys=True, indent=4))
+        return 1
+
+    if args.strings:
+        print('\n'.join(result['strings']['dump']))
+        return 1
+
+    cmd_list, cmd_list_select = get_info(result)
+
+    if args.interactive:
+        return interactive_mode(result, cmd_list, cmd_list_select)
+
+    if result['yara_plugins']:
+        header('Yara Plugins')
+        for item in result['yara_plugins']:
+            for k, v in item.items():
+                print(v.replace('_', ' '))
+
+    if result['docinfo']:
+        if result['docinfo']['behavior']:
+            header('Behavior')
+            for k, v in result['docinfo']['behavior'].items():
+                print(k.ljust(ALIGN, ' '), v)
+
+        if result['docinfo']['attributes']:
+            header('Attributes')
+            for item in result['docinfo']['attributes']:
+                print(item)
+
+    if result['peinfo']:
+        if result['peinfo']['behavior']:
+            header('Behavior')
+            for item in result['peinfo']['behavior']:
+                print(item.replace('_', ' '))
+
+        if result['peinfo']['features']['crypto']:
+            header('Crypto')
+            for item in result['peinfo']['features']['crypto']:
+                print(item.replace('_', ' '))
+
+        if result['peinfo']['features']['packer']:
+            header('Packer')
+            for item in result['peinfo']['features']['packer']:
+                print(item.replace('_', ' '))
+
+        if result['peinfo']['features']['xor']:
+            header('Xor')
+            for k, v in result['peinfo']['features']['xor'].items():
+                print(str(k).ljust(ALIGN, ' '), v)
+
+        if result['peinfo']['features']['mutex']:
+            header('Mutex Api')
+            for item in result['peinfo']['features']['mutex']:
+                print(item)
+
+        if result['peinfo']['features']['antidbg']:
+            header('Anti Debug')
+            for item in result['peinfo']['features']['antidbg']:
+                print(item)
+
+        if result['peinfo']['features']['antivm']:
+            header('Anti VM')
+            for item in result['peinfo']['features']['antivm']:
+                print(item)
+
+        if result['peinfo']['sections']:
+            header('Sections Suspicious')
+            found = False
+            for item in result['peinfo']['sections']['details']:
+                if item['entropy'] > 6:
+                    print(item['section_name'].ljust(
+                        ALIGN, ' '), str(item['entropy'])[:4])
+                    found = True
+            if not found:
+                print('For each section the value of entropy is less than 6')
+
+        if result['peinfo']['metadata']:
+            header('Metadata')
+            for k, v in result['peinfo']['metadata'].items():
+                print(k.ljust(ALIGN, ' '), v[0:63])
+
+        if result['peinfo']['directories']['import']:
+            header('Import function')
+            for k, v in result['peinfo']['directories']['import'].items():
+                print(k.ljust(ALIGN, ' '), len(v))
+
+        if result['peinfo']['directories']['export']:
+            header('Export function')
+            detect = []
+            for item in result['peinfo']['directories']['export']:
+                detect.append(item)
+            print("export".ljust(ALIGN, ' '), detect)
+
+        if result['peinfo']['directories']['sign']:
+            header('Signature')
+            for k, v in result['peinfo']['directories']['sign']['details'].items():
+                if k != 'hash':
+                    print(k.ljust(ALIGN, ' '), v)
+
+        if result['peinfo']['breakpoint']:
+            header('Possibile Breakpoint')
+            for item in result['peinfo']['breakpoint']:
+                print(item)
+
+    if result['strings']:
+        if result['strings']['ip']:
+            header('Ip Address')
+            for item in result['strings']['ip']:
+                print(item)
+
+        if result['strings']['url']:
+            header('Url')
+            for item in result['strings']['url']:
+                print(item)
+
+        if result['strings']['file']:
+            header('File')
+            for k, v in result['strings']['file'].items():
+                print(k.ljust(ALIGN, ' '), v)
+
+        if result['strings']['fuzzing']:
+            header('Fuzzing')
+            for k, v in result['strings']['fuzzing'].items():
+                print(k)
 
 
-if result['docinfo']:
-    if result['docinfo']['behavior']:
-        header('Behavior')
-        for k, v in result['docinfo']['behavior'].items():
-            print(k.ljust(align, ' '), v)
-
-    if result['docinfo']['attributes']:
-        header('Attributes')
-        for item in result['docinfo']['attributes']:
-            print(item)
-
-if result['peinfo']:
-    if result['peinfo']['behavior']:
-        header('Behavior')
-        for item in result['peinfo']['behavior']:
-            print(item.replace('_', ' '))
-
-    if result['peinfo']['features']['crypto']:
-        header('Crypto')
-        for item in result['peinfo']['features']['crypto']:
-            print(item.replace('_', ' '))
-
-    if result['peinfo']['features']['packer']:
-        header('Packer')
-        for item in result['peinfo']['features']['packer']:
-            print(item.replace('_', ' '))
-
-    if result['peinfo']['features']['xor']:
-        header('Xor')
-        for k, v in result['peinfo']['features']['xor'].items():
-            print(str(k).ljust(align, ' '), v)
-
-    if result['peinfo']['features']['mutex']:
-        header('Mutex Api')
-        for item in result['peinfo']['features']['mutex']:
-            print(item)
-
-    if result['peinfo']['features']['antidbg']:
-        header('Anti Debug')
-        for item in result['peinfo']['features']['antidbg']:
-            print(item)
-
-    if result['peinfo']['features']['antivm']:
-        header('Anti VM')
-        for item in result['peinfo']['features']['antivm']:
-            print(item)
-
-    if result['peinfo']['sections']:
-        header('Sections Suspicious')
-        found = False
-        for item in result['peinfo']['sections']['details']:
-            if item['entropy'] > 6:
-                print(item['section_name'].ljust(
-                    align, ' '), str(item['entropy'])[:4])
-                found = True
-        if not found:
-            print('For each section the value of entropy is less than 6')
-
-    if result['peinfo']['metadata']:
-        header('Metadata')
-        for k, v in result['peinfo']['metadata'].items():
-            print(k.ljust(align, ' '), v[0:63])
-
-    if result['peinfo']['directories']['import']:
-        header('Import function')
-        for k, v in result['peinfo']['directories']['import'].items():
-            print(k.ljust(align, ' '), len(v))
-
-    if result['peinfo']['directories']['export']:
-        header('Export function')
-        detect = []
-        for item in result['peinfo']['directories']['export']:
-            detect.append(item)
-        print("export".ljust(align, ' '), detect)
-
-    if result['peinfo']['directories']['sign']:
-        header('Signature')
-        for k, v in result['peinfo']['directories']['sign']['details'].items():
-            if k != 'hash':
-                print(k.ljust(align, ' '), v)
-
-    if result['peinfo']['breakpoint']:
-        header('Possibile Breakpoint')
-        for item in result['peinfo']['breakpoint']:
-            print(item)
-
-if result['strings']:
-    if result['strings']['ip']:
-        header('Ip Address')
-        for item in result['strings']['ip']:
-            print(item)
-
-    if result['strings']['url']:
-        header('Url')
-        for item in result['strings']['url']:
-            print(item)
-
-    if result['strings']['file']:
-        header('File')
-        for k, v in result['strings']['file'].items():
-            print(k.ljust(align, ' '), v)
-
-    if result['strings']['fuzzing']:
-        header('Fuzzing')
-        for k, v in result['strings']['fuzzing'].items():
-            print(k)
-
-sys.exit()
+if __name__ == '__main__':
+    sys.exit(main())
