@@ -79,6 +79,9 @@ How to work
 
 Talk about...
 -------------
+  * `Anatomy on Malware Distribution Networks (PDF) <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9057639>`_ *(Department of Intelligent Systems Engineering, Cheju Halla University, Jeju 63092, South Korea)*
+
+  * `Intel Owl 0.4.0 <https://github.com/certego/IntelOwl/releases/tag/0.4.0>`_ *(certego platform - threat intelligence data about a file, an IP or a domain)*
   * `Integration of Static and Dynamic Analysis for Malware Family Classification with Composite Neural Network <https://www.groundai.com/project/integration-of-static-and-dynamic-analysis-for-malware-family-classification-with-composite-neural-network/>`_ *(Yao Saint, Yen Institute of Information Science, Academia Sinica, Taiwan)*
   * `Machine Learning Aided Static Malware Analysis: A Survey and Tutorial <https://www.researchgate.net/publication/324702503_Machine_Learning_Aided_Static_Malware_Analysis_A_Survey_and_Tutorial>`_ *(Sergii Banin, Andrii Shalaginov, Ali Dehghantanha, Katrin Franke, Norway)*
   * `Multinomial malware classification, research of the Department of Information Security and Communication Technology (NTNU) <https://www.sciencedirect.com/science/article/pii/S1742287618301956>`_ *(Sergii Banin and Geir Olav Dyrkolbotn, Norway)*
