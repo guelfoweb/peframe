@@ -79,6 +79,7 @@ How to work
 
 Talk about...
 -------------
+  * `Building a smart and automated tool for packed malware detections using machine learning <https://dial.uclouvain.be/memoire/ucl/en/object/thesis%3A25193>`_ *(Ecole polytechnique de Louvain, Université catholique de Louvain, Minet, Jeremy; Roussieau, Julian 2020)*
   * `Revealing Packed Malware <https://www.researchgate.net/publication/220496734_Revealing_Packed_Malware>`_ *(Department of Electrical and Computer Engineering, Nirwan Ansari, New Jersey Institute of Technology - NJIT)*
   * `Critical Infrastructures Security: Improving Defense Against Novel Malware and Advanced Persistent Threats (PDF) <https://iris.uniroma1.it/retrieve/handle/11573/1362189/1359415/Tesi_dottorato_Laurenza.pdf>`_ *(Department of Computer, Control, and Management Engineering Antonio Ruberti, Sapienza – University of Rome)*
   * `Anatomy on Malware Distribution Networks (PDF) <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9057639>`_ *(Department of Intelligent Systems Engineering, Cheju Halla University, Jeju 63092, South Korea)*
