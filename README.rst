@@ -79,7 +79,7 @@ How to work
 
 Talk about...
 -------------
-   * `A Longitudinal Analysis of Brazilian Financial Malware <https://www.lasca.ic.unicamp.br/paulo/papers/2020-TOPS-marcus.botacin-brazilian.bankers.pdf>`_ *(Federal University of Paraná, Marcus Botacin, Hojjat Aghakhani, Stefano Ortolani, Christopher Kruegel, Giovanni Vigna, Daniela Oliveira, Paulo Lício de Geus, André Grégio 2020)*
+  * `A Longitudinal Analysis of Brazilian Financial Malware <https://www.lasca.ic.unicamp.br/paulo/papers/2020-TOPS-marcus.botacin-brazilian.bankers.pdf>`_ *(Federal University of Paraná, Marcus Botacin, Hojjat Aghakhani, Stefano Ortolani, Christopher Kruegel, Giovanni Vigna, Daniela Oliveira, Paulo Lício de Geus, André Grégio 2020)*
   * `Building a smart and automated tool for packed malware detections using machine learning <https://dial.uclouvain.be/memoire/ucl/en/object/thesis%3A25193>`_ *(Ecole polytechnique de Louvain, Université catholique de Louvain, Minet, Jeremy; Roussieau, Julian 2020)*
   * `Revealing Packed Malware <https://www.researchgate.net/publication/220496734_Revealing_Packed_Malware>`_ *(Department of Electrical and Computer Engineering, Nirwan Ansari, New Jersey Institute of Technology - NJIT)*
   * `Critical Infrastructures Security: Improving Defense Against Novel Malware and Advanced Persistent Threats (PDF) <https://iris.uniroma1.it/retrieve/handle/11573/1362189/1359415/Tesi_dottorato_Laurenza.pdf>`_ *(Department of Computer, Control, and Management Engineering Antonio Ruberti, Sapienza – University of Rome)*
