@@ -64,7 +64,7 @@ setup(
 
 	entry_points={
 		'console_scripts': [
-			'peframe=peframe.peframecli',
+                    'peframe=peframe.peframecli:main',
 		],
 	},
 
