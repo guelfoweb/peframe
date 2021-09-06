@@ -18,7 +18,7 @@ def xor_delta(s, key_len = 1):
 		delta[x - key_len] ^= delta[x]
 		 
 	""" return the delta as a string """
-	return delta.tostring()[:-key_len]
+	return delta.tobytes()[:-key_len]
  
 def get_xor(filename, search_string=False):
 	xorsearch_custom = False
