@@ -88,7 +88,7 @@ def get_imphash(filename):
 
 def gethash(filename):
 	# 파일의 해쉬값을 반환하는 함수
-	# file을 처음부터 8192개의 문자까지 읽어 hash
+	# file을 처음부터 8192개의 문자까지 read 후 hash 진행
 	# 지원 형식 md5, sha1, sha256
 	# return hashinfo, type = json, ex) 함수 내의 hashinfo.update({"md5"....구문 확인
 
