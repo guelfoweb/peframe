@@ -40,32 +40,58 @@ else:
 
 
 def version():
+	# 버전 확인을 위한 함수
+	# command : peframe -v
+	# return "6.0.3", type : String
 	return "6.0.3"
 
 def get_datetime_now():
+	# 현재 시간을 확인하기 위한 함수
+	# datetime.now()를 사용해 분석에 걸린 시간을 계산
+	# return datetiem.now(), type : String, form : YYYY-MM-DD hh:mm:ss.xxxxxx
 	return datetime.now()
 
 def isfile(filename):
+	# 특정 디렉토리 or 파일이 존재하는지 확인하는 함수
+	# 매개변수인 filename에 들어가 있는 path값을 통해 os.path.isfile()함수를 통해 존재를 확인.
+	# return True / False, 존재할 경우 True 없을경우 False
 	if os.path.isfile(filename):
 		return True
 	return False
 
 def ispe(filename):
+	# re : regex 모듈은 정규표현식을 사용할 수 있도록 기능을 제공하는 내장 모듈
+	# re.match() : 문자열의 처음부터 시작해 작성한 패턴(PE슛자... or MS-DOS...)이 존재하는지 확인
+	# return True / False, PE파일일경우 True 아닐경우 False
 	if re.match(r'^PE[0-9]{2}|^MS-DOS', filetype(filename)):
 		return True
 	return False
 
 def filetype(filename):
+	# magic : 유닉스에서 파일의 타입을 알려주는 file 명령어 모듈
+	# magic.frome_file : 파일의 타입을 반환하는 함수
+	# return file_type, type String, ex) "PE32 excutable (GUI) INtel 80386, for MS Windows"
 	return magic.from_file(filename)
 
 def filesize(filename):
+	# os.path.getsize() : 파일의 사이즈를 바이트단위로 반환
+	# return filesize, type : Integer, ex)  1 == 1 byte
 	return os.path.getsize(filename)
 
 def get_imphash(filename):
+	# pefile : pefile에 대한 분석 기능을 제공하는 모듈
+	# pefule.PE() : pefile 분석
+	# imhash : import hash라고 불리며, PE구조를 가진 대상에서만 사용 가능, 실행 파일 내에서 특정 순서를 가지는 라이브러리와 API의 이름을 기준(IAT : Import Address Table)으로 해쉬값을 생성
+	# return imhash, type = hash value
 	pe = pefile.PE(filename)
 	return pe.get_imphash()
 
 def gethash(filename):
+	# 파일의 해쉬값을 반환하는 함수
+	# file을 처음부터 8192개의 문자까지 읽어 hash
+	# 지원 형식 md5, sha1, sha256
+	# return hashinfo, type = json, ex) 함수 내의 hashinfo.update({"md5"....구문 확인
+
 	hashinfo = {}
 
 	fh = open(filename, 'rb')
