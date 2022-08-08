@@ -1,9 +1,12 @@
 =======
 peframe
 =======
+**This repo is a forked copy for personal study.**
+**Codes and comments can be modified at an unspecified period, and those who wish to refer to peframe, enter by following the address below.**
+
+`Original Github address <https://github.com/guelfoweb/peframe>`_
 
 peframe is a open source tool to perform static analysis on `Portable Executable <http://en.wikipedia.org/wiki/Portable_Executable>`_ malware and generic suspicious file. It can help malware researchers to detect packer, xor, digital signature, mutex, anti debug, anti virtual machine, suspicious sections and functions, macro and much more information about the suspicious files.
-
 
 Install
 -------
